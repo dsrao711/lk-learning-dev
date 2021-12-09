@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/header') %>
+</head>
+<body>
+    <!-- Sidebar -->
+    <%- include('../partials/sidebar'); %>
+    <div class="main-content" id="panel">   
+        <!-- Navbar -->
+        <%- include('../partials/navbar'); %>
+        <!-- Main content -->
+        <div class="header bg-primary pb-6">
+            <!-- Upper nav , Stats -->
+            <div class="container-fluid">
+                <div class="header-body">
+                    <div class="row align-items-center py-4">
+                        <!-- Upper Nav -->
+                        <div class="col-lg-6 col-7">
+                            <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
+
+                            <!-- Upper Nav -->
+                            <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                                    <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                                    <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Authors</li>
+                                </ol>
+                            </nav>
+                        </div>  
+
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card">
+                                        <!-- Card header -->
+                                        <div class="card-header border-0">
+                                            <h3 class="mb-0">Lecturers Data</h3>
+                                        </div>
+                                        <!-- Light table -->
+                                        <div class="table-responsive">
+                                            <table class="table align-items-center table-flush">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th scope="col" class="sort" data-sort="name">Name</th>
+                                                        <th scope="col" class="sort" data-sort="name">Designation</th>
+                                                        <th scope="col" class="sort" data-sort="budget">E-mail</th>
+                                                        <th scope="col" class="sort" data-sort="status">Mobile number</th>
+                                                        <th scope="col">College</th>
+                                                        <th scope="col">State</th>
+                                                        <th scope="col">District</th>
+                                                        <th scope="col">Taluka</th>
+                                                        <th scope="col">Edit</th>
+                                                        <th scope="col">Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="list">
+        
+                                                    <tr>
+                                                        <td class="budget">
+                                                            Niranjani Rao
+                                                        </td>
+        
+                                                        <td class="budget">
+                                                            Assistant Professor
+                                                        </td>
+        
+                                                        <td class="budget">
+                                                            nsrao0712@gmail.com
+                                                        </td>
+        
+                                                        <td class="budget">
+                                                            9987907159
+                                                        </td>
+        
+                                                        <td class="budget">
+                                                            Wilson College
+                                                        </td>
+        
+                                                        <td class="budget">
+                                                            Maharashtra
+                                                        </td>
+        
+                                                        <td class="budget">
+                                                            Mumbai
+                                                        </td>
+        
+                                                        <td class="budget">
+                                                            Churchgate
+                                                        </td>
+        
+                                                        <td class="edit">
+                                                            <button type="button" class="btn  btn-sm" data-toggle="modal" data-target="#examplemodal"><i class="fa fa-edit"
+                                                                    style="color : #172b4d"></i></button>
+                                                        </td>
+                                                        <td class="delete">
+                                                            <button type="submit" class="btn btn-sm" data-toggle="modal" data-target="#examplemodal_delete"><i class="fa fa-trash"
+                                                                    style="color : #172b4d"></i></button>
+                                                        </td>
+                                                    </tr>
+        
+                                                    <tr>
+                                                        <td class="budget">
+                                                            Niranjani Rao
+                                                        </td>
+        
+                                                        <td class="budget">
+                                                            Assistant Professor
+                                                        </td>
+        
+                                                        <td class="budget">
+                                                            nsrao0712@gmail.com
+                                                        </td>
+        
+                                                        <td class="budget">
+                                                            9987907159
+                                                        </td>
+        
+                                                        <td class="budget">
+                                                            Wilson College
+                                                        </td>
+        
+                                                        <td class="budget">
+                                                            Maharashtra
+                                                        </td>
+        
+                                                        <td class="budget">
+                                                            Mumbai
+                                                        </td>
+        
+                                                        <td class="budget">
+                                                            Churchgate
+                                                        </td>
+        
+                                                        <td class="edit">
+                                                            <button type="button" class="btn  btn-sm" data-toggle="modal" data-target="#examplemodal"><i class="fa fa-edit"
+                                                                    style="color : #172b4d"></i></button>
+                                                        </td>
+                                                        <td class="delete">
+                                                            <button type="submit" class="btn btn-sm" data-toggle="modal" data-target="#examplemodal_delete"><i class="fa fa-trash"
+                                                                    style="color : #172b4d"></i></button>
+                                                        </td>
+                                                    </tr>
+        
+                                                    <tr>
+                                                        <td class="budget">
+                                                            Niranjani Rao
+                                                        </td>
+        
+                                                        <td class="budget">
+                                                            Assistant Professor
+                                                        </td>
+        
+                                                        <td class="budget">
+                                                            nsrao0712@gmail.com
+                                                        </td>
+        
+                                                        <td class="budget">
+                                                            9987907159
+                                                        </td>
+        
+                                                        <td class="budget">
+                                                            Wilson College
+                                                        </td>
+        
+                                                        <td class="budget">
+                                                            Maharashtra
+                                                        </td>
+        
+                                                        <td class="budget">
+                                                            Mumbai
+                                                        </td>
+        
+                                                        <td class="budget">
+                                                            Churchgate
+                                                        </td>
+        
+                                                        <td class="edit">
+                                                            <button type="button" class="btn  btn-sm" data-toggle="modal" data-target="#examplemodal"><i class="fa fa-edit"
+                                                                    style="color : #172b4d"></i></button>
+                                                        </td>
+                                                        <td class="delete">
+                                                            <button type="submit" class="btn btn-sm" data-toggle="modal" data-target="#examplemodal_delete"><i class="fa fa-trash"
+                                                                    style="color : #172b4d"></i></button>
+                                                        </td>
+                                                    </tr>
+        
+        
+                                                </tbody>
+                                            </table>
+                                        </div>
+        
+                                        <!-- Card footer -->
+                                        <div class="card-footer py-4">
+                                            <nav aria-label="...">
+                                                <ul class="pagination justify-content-end mb-0">
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link" href="#" tabindex="-1">
+                                                            <i class="fas fa-angle-left"></i>
+                                                            <span class="sr-only">Previous</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item active">
+                                                        <a class="page-link" href="#">1</a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="#">2 <span
+                                                                class="sr-only">(current)</span></a>
+                                                    </li>
+                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="#">
+                                                            <i class="fas fa-angle-right"></i>
+                                                            <span class="sr-only">Next</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+        
+            
+    </div>
+    <!-- Scripts -->
+    <%- include('../partials/scripts'); %>
+
+</body>
+</html>
