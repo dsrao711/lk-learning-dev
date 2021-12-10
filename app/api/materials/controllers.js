@@ -79,9 +79,18 @@ exports.getMaterialsByCategoryandSem = function(req, res) {
     category_input = req.body.material_category_id
 
     try{
+        query = 'SELECT material.material_name , Category.category_name FROM material JOIN Category ON material.category_id = Category.category_id  WHERE material.material_sem_id = ? AND material.category_id = ?' 
+        mysqlConnection.query(query,[sem_input , category_input], (err, rows, fields) => {
+            if (!err) {
+                res.status(200).send(rows)
+            } else {
+                res.status(400).send(err)
+            }
+        })
+
 
     }catch(err){
-        res.status(500).json({"message" : "Internal server erro"})
+        res.status(500).json({"message" : "Internal server error"})
     }
 
 } 
