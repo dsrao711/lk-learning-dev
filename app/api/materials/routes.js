@@ -5,5 +5,6 @@ var controller = require('./controllers')
 router.get('/getMaterials' , controller.getMaterials)
 router.get('/getAcademicMaterials' , controller.getAcademicMaterials)
 router.get('/getNonAcademicMaterials' , controller.getNonAcademicMaterials)
+router.get('/getMaterialsBySem' , controller.getMaterialsBySemester)
 
 module.exports = router ;
