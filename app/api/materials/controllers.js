@@ -55,6 +55,7 @@ exports.getNonAcademicMaterials = function (req, res) {
 
 // Get all materials info according to sem input given by user
 exports.getMaterialsBySemester = function (req, res) {
+    
     sem_input = req.body.material_sem_id
     try { 
         query = 'SELECT material.material_name , author.author_name , material.material_cost , Category.category_type FROM material JOIN author ON author.author_id = material.author_id JOIN Category ON material.category_id = Category.category_id  WHERE material.material_sem_id = ?' 
@@ -87,7 +88,6 @@ exports.getMaterialsByCategoryandSem = function(req, res) {
                 res.status(400).send(err)
             }
         })
-
 
     }catch(err){
         res.status(500).json({"message" : "Internal server error"})
