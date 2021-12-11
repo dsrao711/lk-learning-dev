@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 const Authentication = require('../utils/auth')
 var mysqlConnection = require('../../config/connection')
 
+// App register
 exports.registerStudent = function (req, res) {
     console.log(req.body.student_name)
 
@@ -53,7 +54,7 @@ exports.test = function (req, res) {
     res.send("Success")
 }
 
-
+// App login 
 exports.login = function (req, res) {
 
     // Steps
@@ -106,3 +107,4 @@ exports.login = function (req, res) {
     })
 
 }
+

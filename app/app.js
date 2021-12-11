@@ -7,6 +7,7 @@ var connection = require('./config/connection')
 const expressLayouts = require('express-ejs-layouts')
 
 // Routes
+var loginRouter = require('./api/adminlogin/routes')
 var dashboardRouter = require('./api/dashboard/routers')
 var authRouter = require('./api/auth/routes');
 var authorsRouter = require('./api/authors/routes')
@@ -37,11 +38,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Dashboard 
-
-
 // Routes
 app.use('/' , dashboardRouter)
+app.use('/login' ,loginRouter);
 app.use('/auth', authRouter);
 app.use('/authors', authorsRouter);
 app.use('/students', studentRouter);
