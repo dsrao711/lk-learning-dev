@@ -5,15 +5,17 @@ const Authentication = require('./auth')
 const requireLogin = (req, res, next) => {
 
     try {
-        const token = req.body.token || req.query.token || req.headers["x-access-token"];
+        
+        const token = req.cookies.access_token
+
         const auth = new Authentication()
         var data = auth.verifyToken(token)
 
-        if (data && data.role == 'student') {
-            req.data = data.id
+        if (data && data.role == 'admin') {
+            console.log("Logged in!!")
             next();
         } else {
-            res.status(401).json({ "message": "Unauthorized access" })
+            res.status(401).redirect('/login')
         }
         
     }catch(err){

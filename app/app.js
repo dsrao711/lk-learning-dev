@@ -20,7 +20,8 @@ var coursesRouter = require('./api/courses/routes')
 var ordersRouter = require('./api/orders/routes')
 var semestersRouter = require('./api/semesters/routes')
 var subjectsRouter = require('./api/subjects/routes')
-var universitiesRouter = require('./api/universities/routes')
+var universitiesRouter = require('./api/universities/routes');
+const { login } = require('./api/auth/controller');
 
 var app = express();
 
@@ -39,8 +40,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-app.use('/' , dashboardRouter)
-app.use('/login' ,loginRouter);
+app.use('/' , dashboardRouter);
+app.use('/login' , loginRouter)
 app.use('/auth', authRouter);
 app.use('/authors', authorsRouter);
 app.use('/students', studentRouter);

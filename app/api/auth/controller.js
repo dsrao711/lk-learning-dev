@@ -82,6 +82,7 @@ exports.login = function (req, res) {
             // Pwd from DB
             pwd = rows[0]['student_password']
             student_name = rows[0]['student_name']
+            student_id = rows[0]['student_id']
 
             // Compare users input with original pwd in DB
             bcrypt.compare(student_password, pwd).then(function (result) {
@@ -91,8 +92,11 @@ exports.login = function (req, res) {
                     // Generating new access token
                     const auth = new Authentication()
                     const data = {
-                        mobile_number: student_mobile_number
-                    }
+                        mobile_number: student_mobile_number , 
+                        id : student_id,
+                        role : 'student'
+                    } 
+                    // create token
                     const token = auth.createToken(data)
                     console.log(token)
                     // Send response with the token
