@@ -56,156 +56,54 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody class="list">
-                                                    <tr>
-        
-                                                        <td class="budget">
-                                                            Divya Rao
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            dsrao0712@gmail.com
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            9987907159
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            Maharashtra
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            Thane
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            Bhayandar
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            DJ Sanghvi college of engineering
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            Signals and systems
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            Electronics and Telecommunication
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            7
-                                                        </td>
-        
-                                                        <td class="edit">
-                                                            <button type="button" class="btn  btn-sm" data-toggle="modal" data-target="#examplemodal"><i class="fa fa-edit" style = "color : #172b4d"></i></button>
-                                                        </td>
-                                                        <td class="delete">
-                                                            <button type="submit" class="btn btn-sm" data-toggle="modal" data-target="#examplemodal_delete"><i class="fa fa-trash" style = "color : #172b4d"></i></button>
-                                                        </td>
-                                                    </tr>
-        
-                                                    <tr>
-        
-                                                        <td class="budget">
-                                                            Divya Rao
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            dsrao0712@gmail.com
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            9987907159
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            Maharashtra
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            Thane
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            Bhayandar
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            DJ Sanghvi college of engineering
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            Signals and systems
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            Electronics and Telecommunication
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            7
-                                                        </td>
-        
-                                                        <td class="edit">
-                                                            <button type="button" class="btn  btn-sm" data-toggle="modal" data-target="#examplemodal"><i class="fa fa-edit" style = "color : #172b4d"></i></button>
-                                                        </td>
-                                                        <td class="delete">
-                                                            <button type="submit" class="btn btn-sm" data-toggle="modal" data-target="#examplemodal_delete"><i class="fa fa-trash" style = "color : #172b4d"></i></button>
-                                                        </td>
-                                                    </tr>
-        
-                                                    <tr>
-        
-                                                        <td class="budget">
-                                                            Divya Rao
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            dsrao0712@gmail.com
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            9987907159
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            Maharashtra
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            Thane
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            Bhayandar
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            DJ Sanghvi college of engineering
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            Signals and systems
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            Electronics and Telecommunication
-                                                        </td>
-        
-                                                        <td class="budget">
-                                                            7
-                                                        </td>
-        
-                                                        <td class="edit">
-                                                            <button type="button" class="btn  btn-sm" data-toggle="modal" data-target="#examplemodal"><i class="fa fa-edit" style = "color : #172b4d"></i></button>
-                                                        </td>
-                                                        <td class="delete">
-                                                            <button type="submit" class="btn btn-sm" data-toggle="modal" data-target="#examplemodal_delete"><i class="fa fa-trash" style = "color : #172b4d"></i></button>
-                                                        </td>
-                                                    </tr>
-        
+                                                    <% if (data.length){
+                                                        var i = 1 ;
+                                                        data.forEach(function(data){ %>
+                                                            <tr> 
+                                                                <td class="budget">
+                                                                    <%= data.student_name %>
+                                                                </td> 
+                                                                <td class="budget">
+                                                                    <%= data.student_email %>
+                                                                </td> 
+                                                                <td class="budget">
+                                                                    <%= data.student_mobile_number %>
+                                                                </td>  
+                                                                <td class="budget">
+                                                                    <%= data.student_state %>
+                                                                </td> 
+                                                                <td class="budget">
+                                                                    <%= data.student_district %>
+                                                                </td> 
+                                                                <td class="budget">
+                                                                    <%= data.student_taluka %>
+                                                                </td> 
+                                                                <td class="budget">
+                                                                    <%= data.college_id %>
+                                                                </td> 
+                                                                <td class="budget">
+                                                                    <%= data.course_id %>
+                                                                </td> 
+                                                                <td class="budget">
+                                                                    <%= data.branch_id %>
+                                                                </td> 
+                                                                <td class="budget">
+                                                                    <%= data.semester_id %>
+                                                                </td> 
+                                                                <td class="edit">
+                                                                    <button type="button" class="btn  btn-sm" data-toggle="modal" data-target="#examplemodal"><i class="fa fa-edit" style = "color : #172b4d"></i></button>
+                                                                </td>
+                                                                <td class="delete">
+                                                                    <button type="submit" class="btn btn-sm" data-toggle="modal" data-target="#examplemodal_delete"><i class="fa fa-trash" style = "color : #172b4d"></i></button>
+                                                                </td>
+                                                            </tr>
+                                                        
+                                                        <% i++; }) %>
+
+                                                    <% } %>
+                                            
+                                                
+                                                
                                                 </tbody>
                                             </table>
                                         </div>

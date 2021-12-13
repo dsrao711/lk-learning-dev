@@ -10,7 +10,7 @@ const requireLogin = (req, res, next) => {
 
         const auth = new Authentication()
         var data = auth.verifyToken(token)
-
+        console.log(data)
         if (data && data.role == 'admin') {
             console.log("Logged in!!")
             next();
