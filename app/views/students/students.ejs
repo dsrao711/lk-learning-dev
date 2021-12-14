@@ -1,161 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <%- include('../partials/header') %>
+  <%- include('../partials/header') %>
 </head>
+
 <body>
-    <!-- Sidebar -->
-    <%- include('../partials/sidebar'); %>
-    <div class="main-content" id="panel">   
-        <!-- Navbar -->
-        <%- include('../partials/navbar'); %>
+  <!-- Sidebar -->
+  <%- include('../partials/sidebar'); %>
+    <div class="main-content" id="panel">
+      <!-- Navbar -->
+      <%- include('../partials/navbar'); %>
         <!-- Main content -->
         <div class="header bg-primary pb-6">
-            <!-- Upper nav , Stats -->
-            <div class="container-fluid">
-                <div class="header-body">
-                    <div class="row align-items-center py-4">
-                        <!-- Upper Nav -->
-                        <div class="col-lg-6 col-7">
-                            <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
-                            <!-- Upper Nav -->
-                            <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
-                                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                                    <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                                    <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Users</li>
-                                </ol>
-                            </nav>
-                        </div>
-                        <div class="col-lg-6 text-right">
-                            <form method="post" action="/">
-                                <button type = "submit" class="btn btn-lg btn-neutral text-dark">Export CSV</button>
-                            </form>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="card">
-                                        <!-- Card header -->
-                                        <div class="card-header border-0">
-                                            <h3 class="mb-0">Users Data</h3>
-                                        </div>
-            
-                                        <!-- Light table -->
-                                        <div class="table-responsive p-2">
-                                            <table class="table align-items-center table-flush">
-                                                <thead class="thead-light">
-                                                    <tr>
-                                                        <th scope="col" class="sort" data-sort="name">Name</th>
-                                                        <th scope="col" class="sort" data-sort="budget">E-mail</th>
-                                                        <th scope="col" class="sort" data-sort="status">Mobile number</th>
-                                                        <th scope="col">State</th>
-                                                        <th scope="col" class="sort" data-sort="completion">District</th>
-                                                        <th scope="col">Taluka</th>
-                                                        <th scope="col">College</th>
-                                                        <th scope="col">Course</th>
-                                                        <th scope="col">Branch</th>
-                                                        <th scope="col">Semester</th>
-                                                        <th scope="col">Edit</th>
-                                                        <th scope="col">Delete</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody class="list">
-                                                    <% if (data.length){
-                                                        var i = 1 ;
-                                                        data.forEach(function(data){ %>
-                                                            <tr> 
-                                                                <td class="budget">
-                                                                    <%= data.student_name %>
-                                                                </td> 
-                                                                <td class="budget">
-                                                                    <%= data.student_email %>
-                                                                </td> 
-                                                                <td class="budget">
-                                                                    <%= data.student_mobile_number %>
-                                                                </td>  
-                                                                <td class="budget">
-                                                                    <%= data.student_state %>
-                                                                </td> 
-                                                                <td class="budget">
-                                                                    <%= data.student_district %>
-                                                                </td> 
-                                                                <td class="budget">
-                                                                    <%= data.student_taluka %>
-                                                                </td> 
-                                                                <td class="budget">
-                                                                    <%= data.college_name %>
-                                                                </td> 
-                                                                <td class="budget">
-                                                                    <%= data.course_name %>
-                                                                </td> 
-                                                                <td class="budget">
-                                                                    <%= data.branch_name %>
-                                                                </td> 
-                                                                <td class="budget">
-                                                                    <%= data.semester_name %>
-                                                                </td> 
-                                                                <td class="edit">
-                                                                    <button type="button" class="btn  btn-sm" data-toggle="modal" data-target="#examplemodal"><i class="fa fa-edit" style = "color : #172b4d"></i></button>
-                                                                </td>
-                                                                <td class="delete">
-                                                                    <button type="submit" class="btn btn-sm" data-toggle="modal" data-target="#examplemodal_delete"><i class="fa fa-trash" style = "color : #172b4d"></i></button>
-                                                                </td>
-                                                            </tr>
-                                                        
-                                                        <% i++; }) %>
-
-                                                    <% } %>
-                                            
-                                                
-                                                
-                                                </tbody>
-                                            </table>
-                                        </div>
-        
-                                        <!-- Card footer -->
-                                        <div class="card-footer py-4">
-                                            <nav aria-label="...">
-                                                <ul class="pagination justify-content-end mb-0">
-                                                    <li class="page-item disabled">
-                                                        <a class="page-link" href="#" tabindex="-1">
-                                                            <i class="fas fa-angle-left"></i>
-                                                            <span class="sr-only">Previous</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="page-item active">
-                                                        <a class="page-link" href="#">1</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">2 <span
-                                                                class="sr-only">(current)</span></a>
-                                                    </li>
-                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">
-                                                            <i class="fas fa-angle-right"></i>
-                                                            <span class="sr-only">Next</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  
-
-                       
-                    </div>
+          <!-- Upper nav , Stats -->
+          <div class="container-fluid">
+            <div class="header-body">
+              <div class="row align-items-center py-4">
+                <!-- Upper Nav -->
+                <div class="col-lg-6 col-7">
+                  <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
+                  <!-- Upper Nav -->
+                  <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                      <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                      <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Users</li>
+                    </ol>
+                  </nav>
                 </div>
+                <div class="col-lg-6 text-right">
+                  <form method="post" action="/">
+                    <button type="submit" class="btn btn-lg btn-neutral text-dark">Export CSV</button>
+                  </form>
+                </div>
+                <div class="col-lg-12">
+                  <div class="row">
+                    <div class="col">
+                      <div class="card">
+                        <!-- Card header -->
+                        <div class="card-header border-0">
+                          <h3 class="mb-0">Users Data</h3>
+                        </div>
+
+                        <!-- Light table -->
+                        <div class="table-responsive p-2">
+                          <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                              <tr>
+                                <th scope="col" class="sort" data-sort="name">Name</th>
+                                <th scope="col" class="sort" data-sort="budget">E-mail</th>
+                                <th scope="col" class="sort" data-sort="status">Mobile number</th>
+                                <th scope="col">State</th>
+                                <th scope="col" class="sort" data-sort="completion">District</th>
+                                <th scope="col">Taluka</th>
+                                <th scope="col">College</th>
+                                <th scope="col">Course</th>
+                                <th scope="col">Branch</th>
+                                <th scope="col">Semester</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Delete</th>
+                              </tr>
+                            </thead>
+                            <tbody class="list">
+                              <% if (data.length){ var i=1 ; data.forEach(function(data){ %>
+                                <tr>
+                                  <td class="budget">
+                                    <%= data.student_name %>
+                                  </td>
+                                  <td class="budget">
+                                    <%= data.student_email %>
+                                  </td>
+                                  <td class="budget">
+                                    <%= data.student_mobile_number %>
+                                  </td>
+                                  <td class="budget">
+                                    <%= data.student_state %>
+                                  </td>
+                                  <td class="budget">
+                                    <%= data.student_district %>
+                                  </td>
+                                  <td class="budget">
+                                    <%= data.student_taluka %>
+                                  </td>
+                                  <td class="budget">
+                                    <%= data.college_name %>
+                                  </td>
+                                  <td class="budget">
+                                    <%= data.course_name %>
+                                  </td>
+                                  <td class="budget">
+                                    <%= data.branch_name %>
+                                  </td>
+                                  <td class="budget">
+                                    <%= data.semester_name %>
+                                  </td>
+                                  <td class="edit">
+                                    <button type="button" class="btn  btn-sm" data-toggle="modal"
+                                      data-target="#examplemodal-<%= data.student_id %>"><i class="fa fa-edit"
+                                        style="color : #172b4d"></i></button>
+                                  </td>
+                                  <td class="delete">
+                                    <button type="submit" class="btn btn-sm" data-toggle="modal"
+                                      data-target="#examplemodal_delete"><i class="fa fa-trash"
+                                        style="color : #172b4d"></i></button>
+                                  </td>
+                                </tr>
+                                <!-- Edit modal -->
+                                <div class="modal fade" id="examplemodal-<%= data.student_id %>" tabindex="-1"
+                                  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Edit Student data</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+
+                                        <div class="row">
+                                          <div class="col-lg-6">
+                                            <label class="form-control-label" for="input-email">Name</label>
+                                            <input type="text" class="form-control" placeholder="College Name"
+                                              value="<%= data.student_name %>">
+                                          </div>
+                                          <div class="col-lg-6">
+                                            <label class="form-control-label" for="input-email">Email</label>
+                                            <input type="text" class="form-control" placeholder="University" value="<%= data.student_email %>">
+                                          </div>
+                                        </div>
+
+                                        <div class="row">
+                                          <div class="col-lg-6">
+                                            <label class="form-control-label" for="input-email">Phone number</label>
+                                            <input type="text" class="form-control" placeholder="College Name"
+                                              value="<%= data.student_mobile_number %>">
+                                          </div>
+                                          <div class="col-lg-6">
+                                            <label class="form-control-label" for="input-email">University</label>
+                                            <input type="text" class="form-control" placeholder="University" value="<%= data.university_name %>">
+                                          </div>
+                                        </div>
+
+                                        <div class="row">
+                                          <div class="col-lg-6">
+                                            <label class="form-control-label" for="input-email">College</label>
+                                            <input type="text" class="form-control" placeholder="College Name"
+                                              value="<%= data.college_name %>">
+                                          </div>
+                                          <div class="col-lg-6">
+                                            <label class="form-control-label" for="input-email">Course</label>
+                                            <input type="text" class="form-control" placeholder="University" value="<%= data.course_name %>">
+                                          </div>
+                                        </div>
+
+                                        <div class="row">
+                                          <div class="col-lg-6">
+                                            <label class="form-control-label" for="input-email">Branch</label>
+                                            <input type="text" class="form-control" placeholder="College Name"
+                                              value="<%= data.branch_name %>">
+                                          </div>
+                                          <div class="col-lg-6">
+                                            <label class="form-control-label" for="input-email">Semester</label>
+                                            <input type="text" class="form-control" placeholder="University" value="<%= data.semester_name %>">
+                                          </div>
+                                        </div>
+
+                                        <div class="row">
+                                          <div class="col-lg-6">
+                                            <label class="form-control-label" for="input-email">State</label>
+                                            <input type="text" class="form-control" placeholder="College Name"
+                                              value="<%= data.student_state %>">
+                                          </div>
+                                          <div class="col-lg-6">
+                                            <label class="form-control-label" for="input-email">District</label>
+                                            <input type="text" class="form-control" placeholder="University" value="<%= data.student_district %>">
+                                          </div>
+                                        </div>
+
+                                        <div class="row">
+                                          <div class="col-lg-6">
+                                            <label class="form-control-label" for="input-email">Taluka</label>
+                                            <input type="text" class="form-control" placeholder="College Name"
+                                              value="<%= data.student_taluka %>">
+                                          </div>
+                                          <div class="col-lg-6">
+                                            <label class="form-control-label" for="input-email">Academic year</label>
+                                            <input type="text" class="form-control" placeholder="University">
+                                          </div>
+                                        </div>
+
+
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                          data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Submit</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <% }) %>
+
+
+                                  <% } %>
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <!-- Card footer -->
+                        <div class="card-footer py-4">
+                          <nav aria-label="...">
+                            <ul class="pagination justify-content-end mb-0">
+                              <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">
+                                  <i class="fas fa-angle-left"></i>
+                                  <span class="sr-only">Previous</span>
+                                </a>
+                              </li>
+                              <li class="page-item active">
+                                <a class="page-link" href="#">1</a>
+                              </li>
+                              <li class="page-item">
+                                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                              </li>
+                              <li class="page-item"><a class="page-link" href="#">3</a></li>
+                              <li class="page-item">
+                                <a class="page-link" href="#">
+                                  <i class="fas fa-angle-right"></i>
+                                  <span class="sr-only">Next</span>
+                                </a>
+                              </li>
+                            </ul>
+                          </nav>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-    
+          </div>
+
         </div>
-        
-            
+
+
     </div>
+    <!-- Modals -->
+
     <!-- Scripts -->
     <%- include('../partials/scripts'); %>
 
 </body>
+
 </html>

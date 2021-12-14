@@ -10,7 +10,7 @@ exports.getStudents = function(req, res) {
 
     var sql_statement = `
     SELECT 
-        s.student_name , s.student_email , s.student_mobile_number ,
+        s.student_id , s.student_name , s.student_email , s.student_mobile_number ,
         s.student_state , s.student_district , s.student_taluka ,
         c.college_name ,cr.course_name , b.branch_name , 
         sem.semester_name , u.university_name  
