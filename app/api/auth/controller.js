@@ -49,7 +49,7 @@ exports.registerStudent = function (req, res) {
 
 }
 
-
+// Test
 exports.test = function (req, res) {
     res.send("Success")
 }
