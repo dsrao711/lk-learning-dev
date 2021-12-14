@@ -8,13 +8,12 @@ var mySqlConnection = require('../../config/connection')
 // Send the data to ejs
 exports.getStudents = function(req, res) {
 
-
     var sql_statement = `
     SELECT 
         s.student_name , s.student_email , s.student_mobile_number ,
-        s.student_state , s.student_district , s.student_taluka , c.college_name ,
-        cr.course_name , b.branch_name , sem.semester_name , 
-        u.university_name  
+        s.student_state , s.student_district , s.student_taluka ,
+        c.college_name ,cr.course_name , b.branch_name , 
+        sem.semester_name , u.university_name  
     FROM student AS s
         JOIN college AS c ON s.college_id = c.college_id
         JOIN course AS cr ON s.course_id = cr.course_id
@@ -54,15 +53,43 @@ exports.editStudent = function(req, res) {
     const course_id = req.body.course_id
     const branch_id = req.body.branch_id
     const semester_id = req.body.semester_id
-    const student_edu_status = req.body.student_edu_status
-    const student_academic_yr = req.body.student_academic_yr
 
-    sql_statement = 'UPDATE student SET student_name = ? , student_mobile_number = ? , student_email = ? , student_state = ? , student_taluka =  ? , student _district = ? '
-    mysqlConnection.query()
+    var sql_statement = `
+    UPDATE student 
+        SET student_name = ? , 
+            student_mobile_number = ? ,
+            student_email = ? ,
+            student_state = ? , 
+            student_district = ? ,
+            student_taluka = ? ,
+            college_id = ? , 
+            branch_id = ? ,
+            semester_id = ? ,   
+            university_id = ? , 
+            course_id = ? 
+    `
+    var users_input = [student_name , student_mobile_number , student_email ,
+                      student_state , student_district , student_taluka , 
+                      college_id , branch_id , semester_id , university_id , 
+                      course_id ] ;
+    try{
+        mysqlConnection.query(sql_statement , users_input , (err , rows , fields) => {
+            if(!err){
+                res
+                .status(204)
+                .render('students/students.ejs' , {alert : "Updated entry"})
+            }else{
+                res
+                .status(200)
+                .render('students/student.ejs' , {alert : "Error updating entry , Please try again !"} )
+            }
 
-
-
+        })
+    }catch(err){
+        res
+        .status(500)
+        .json({"message" : "Internal server error!"})
+    }
     
-
     
 }
