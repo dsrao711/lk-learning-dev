@@ -32,7 +32,7 @@ exports.registerStudent = function (req, res) {
             // Check if user already exists (MOBILE NUMBER) 
             mysqlConnection.query("SELECT * FROM student WHERE student_mobile_number = ?", [student_mobile_number], (err, rows, fields) => {
                 if (rows.length) {
-                    res.status(409).send("User already exists")
+                    res.status(409).json({ "message" : "User already exists"})
                 } else {
                     // Insert
                     mysqlConnection.query("INSERT INTO student(student_id , student_name , student_password , student_mobile_number , student_email , student_state , student_district , student_taluka , college_id , university_id , branch_id , course_id , semester_id , student_edu_status , student_academic_yr) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [0, student_name, hash, student_mobile_number, student_email, student_state, student_district, student_taluka, college_id, university_id, branch_id, course_id, semester_id, student_edu_status, student_academic_yr], (err, rows, fields) => {
@@ -68,47 +68,50 @@ exports.login = function (req, res) {
     console.log(student_mobile_number)
 
     const student_password = req.body.student_password
+    try{
+        mysqlConnection.query("SELECT * FROM student where student_mobile_number = ?", [student_mobile_number], (err, rows, fields) => {
 
-    mysqlConnection.query("SELECT * FROM student where student_mobile_number = ?", [student_mobile_number], (err, rows, fields) => {
-
-        // Check if user exists by finding Mobile number in DB
-        if (err) {
-            res.send("not found")
-        }
-
-        // Check if password matches
-        else {
-
-            // Pwd from DB
-            pwd = rows[0]['student_password']
-            student_name = rows[0]['student_name']
-            student_id = rows[0]['student_id']
-
-            // Compare users input with original pwd in DB
-            bcrypt.compare(student_password, pwd).then(function (result) {
-
-                if (result === true) {
-                    console.log("Password matched!!")
-                    // Generating new access token
-                    const auth = new Authentication()
-                    const data = {
-                        mobile_number: student_mobile_number , 
-                        id : student_id,
-                        role : 'student'
-                    } 
-                    // create token
-                    const token = auth.createToken(data)
-                    console.log(token)
-                    // Send response with the token
-                    res.status(200).json({message : "Successfully logged in!" , token : token , mobile_number : student_mobile_number , name : student_name })
-
-                } else {
-                    res.status(400).json({message : "Login failed"})
-                }
-            });
-        }
-
-    })
+            // Check if user exists by finding Mobile number in DB
+    
+            if (rows.length == 0) {
+                res.status(400).json({message : "Mobile number not registered!"})
+            }
+            // Check if password matches
+            else {
+                // Pwd from DB
+                pwd = rows[0]['student_password']
+                student_name = rows[0]['student_name']
+                student_id = rows[0]['student_id']
+    
+                // Compare users input with original pwd in DB
+                bcrypt.compare(student_password, pwd).then(function (result) {
+    
+                    if (result === true) {
+                        console.log("Password matched!!")
+                        // Generating new access token
+                        const auth = new Authentication()
+                        const data = {
+                            mobile_number: student_mobile_number , 
+                            id : student_id,
+                            role : 'student'
+                        } 
+                        // create token
+                        const token = auth.createToken(data)
+                        console.log(token)
+                        // Send response with the token
+                        res.status(200).json({message : "Successfully logged in!" , token : token , mobile_number : student_mobile_number , name : student_name })
+    
+                    } else {
+                        res.status(401).json({message : "Incorrect credentials"  , err : "Unauthorized access"})
+                    }
+                });
+            }
+    
+        })
+    }catch(err){
+        res.status(500).json({"message" : "Internal server error"})
+    }
+    
 
 }
 

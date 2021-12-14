@@ -43,3 +43,8 @@ exports.loginAdmin = function (req, res) {
     }
 
 }
+
+exports.logout = function(req , res){
+    res.clearCookie('jwt');
+    res.redirect('/login')
+}
