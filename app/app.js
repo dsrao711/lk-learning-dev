@@ -21,6 +21,7 @@ var ordersRouter = require('./api/orders/routes')
 var semestersRouter = require('./api/semesters/routes')
 var subjectsRouter = require('./api/subjects/routes')
 var universitiesRouter = require('./api/universities/routes');
+var locationRouter = require('./api/location/routes');
 const { login } = require('./api/auth/controller');
 
 var app = express();
@@ -54,6 +55,7 @@ app.use('/orders', ordersRouter);
 app.use('/semesters', semestersRouter);
 app.use('/subjects', subjectsRouter);
 app.use('/universities', universitiesRouter);
+app.use('/location', locationRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
