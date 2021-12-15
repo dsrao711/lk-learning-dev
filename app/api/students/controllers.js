@@ -11,7 +11,8 @@ exports.getStudents = function(req, res) {
     var sql_statement = `
     SELECT 
         s.student_id , s.student_name , s.student_email , s.student_mobile_number ,
-        s.student_state , s.student_district , s.student_taluka ,
+        s.student_state , s.student_district , s.student_taluka , 
+        s.student_edu_status , s.student_academic_yr , 
         c.college_name ,cr.course_name , b.branch_name , 
         sem.semester_name , u.university_name  
     FROM student AS s
@@ -93,3 +94,4 @@ exports.editStudent = function(req, res) {
     
     
 }
+

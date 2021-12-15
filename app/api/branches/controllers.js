@@ -14,3 +14,9 @@ exports.getBranches = function(req , res) {
 
 }
 
+exports.getBranchesPage = function(req , res) {
+    res.render('branches/branches.ejs')
+}
+
+
+

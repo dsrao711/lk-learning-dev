@@ -14,3 +14,9 @@ exports.getUniversities = function(req , res) {
 
 }
 
+exports.getUniversitiesPage = function(req , res) {
+
+    res.send("Universities page")
+
+}
+
