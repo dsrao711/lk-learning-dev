@@ -1,12 +1,11 @@
 const { useColors } = require('debug/src/browser')
-const mysqlConnection = require('../../config/connection')
-var mySqlConnection = require('../../config/connection')
+var mysqlConnection = require('../../config/connection')
+var getStates = require('../utils/getStates')
+// var getDistricts = require('../utils/getDistricts')
+// var getCity = require('../utils/getCity')
 
-// Get users 
-// 1. Get data from db
-// Form a list of data fetched 
-// Send the data to ejs
-exports.getStudents = function(req, res) {
+// Get students page
+exports.getStudents = function (req, res) {
 
     var sql_statement = `
     SELECT 
@@ -23,34 +22,35 @@ exports.getStudents = function(req, res) {
         JOIN university AS u ON s.university_id = u.university_id
     `
 
-    mysqlConnection.query(sql_statement , (err  ,rows , fields ) => {
-        if(!err){
-            console.log(rows)
-            res
-            .status(200)
-            .render('students/students.ejs' , {data : rows})
-            
-        }else{
+    mysqlConnection.query(sql_statement, (err, rows, fields) => {
+        if (!err) {
+            // Fetch states , district ,taluka for select dropdown menu 
+            // var states = getStates()
+            // var districts = getDistricts()
+            // var cities = getCity()
+            res.status(200).render('students/students.ejs', { data: rows })
+
+        } else {
             console.log(err)
             res.send(fields)
         }
     })
-    
+
 }
 
 // Update student 
-
-exports.editStudent = function(req, res) {
+exports.editStudent = function (req, res) {
     console.log(req.body)
     // Input
+    // Get ids only 
     const student_name = req.body.student_name;
     const student_mobile_number = req.body.student_mobile_number
     const student_email = req.body.student_email
     const student_state = req.body.student_state
     const student_district = req.body.student_district
     const student_taluka = req.body.student_taluka
-    const college_id = req.body.college_id
-    const university_id = req.body.university_id
+    const college_name = req.body.college_id
+    const university_name = req.body.university_id
     const course_id = req.body.course_id
     const branch_id = req.body.branch_id
     const semester_id = req.body.semester_id
@@ -69,29 +69,30 @@ exports.editStudent = function(req, res) {
             university_id = ? , 
             course_id = ? 
     `
-    var users_input = [student_name , student_mobile_number , student_email ,
-                      student_state , student_district , student_taluka , 
-                      college_id , branch_id , semester_id , university_id , 
-                      course_id ] ;
-    try{
-        mysqlConnection.query(sql_statement , users_input , (err , rows , fields) => {
-            if(!err){
+    var users_input = [student_name, student_mobile_number, student_email,
+        student_state, student_district, student_taluka,
+        college_id, branch_id, semester_id, university_id,
+        course_id];
+
+    try {
+        mysqlConnection.query(sql_statement, users_input, (err, rows, fields) => {
+            if (!err) {
                 res
-                .status(204)
-                .render('students/students.ejs' , {alert : "Updated entry"})
-            }else{
+                    .status(204)
+                    .render('students/students.ejs', { alert: "Updated entry" })
+            } else {
                 res
-                .status(200)
-                .render('students/student.ejs' , {alert : "Error updating entry , Please try again !"} )
+                    .status(200)
+                    .render('students/student.ejs', { alert: "Error updating entry , Please try again !" })
             }
 
         })
-    }catch(err){
+    } catch (err) {
         res
-        .status(500)
-        .json({"message" : "Internal server error!"})
+            .status(500)
+            .json({ "message": "Internal server error!" })
     }
-    
-    
+
+
 }
 

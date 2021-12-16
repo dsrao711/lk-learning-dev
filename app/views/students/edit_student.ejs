@@ -1,0 +1,111 @@
+<div class="modal fade" id="examplemodal-<%= data.student_id %>" tabindex="-1"
+    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Student data</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="/students/edit" method="POST">
+          <div class="modal-body">
+
+            <div class="row">
+              <div class="col-lg-6">
+                <label class="form-control-label" for="input-email">Name</label>
+                <input type="text" class="form-control" placeholder="College Name"
+                  value="<%= data.student_name %>">
+              </div>
+              <div class="col-lg-6">
+                <label class="form-control-label" for="input-email">Email</label>
+                <input type="text" class="form-control" placeholder="University"
+                  value="<%= data.student_email %>">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <label class="form-control-label" for="input-email">Phone number</label>
+                <input type="text" class="form-control" placeholder="College Name"
+                  value="<%= data.student_mobile_number %>">
+              </div>
+              <div class="col-lg-6">
+                <label class="form-control-label" for="input-email">University</label>
+                <input type="text" class="form-control" placeholder="University"
+                  value="<%= data.university_name %>">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <label class="form-control-label" for="input-email">College</label>
+                <input type="text" class="form-control" placeholder="College Name"
+                  value="<%= data.college_name %>">
+              </div>
+              <div class="col-lg-6">
+                <label class="form-control-label" for="input-email">Course</label>
+                <input type="text" class="form-control" placeholder="University"
+                  value="<%= data.course_name %>">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <label class="form-control-label" for="input-email">Branch</label>
+                <input type="text" class="form-control" placeholder="College Name"
+                  value="<%= data.branch_name %>">
+              </div>
+              <div class="col-lg-6">
+                <label class="form-control-label" for="input-email">Semester</label>
+                <input type="text" class="form-control" placeholder="University"
+                  value="<%= data.semester_name %>">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <label class="form-control-label" for="input-email">State</label>
+                <input type="text" class="form-control" placeholder="College Name"
+                  value="<%= data.student_state %>">
+              </div>
+              <div class="col-lg-6">
+                <label class="form-control-label" for="input-email">District</label>
+                <input type="text" class="form-control" placeholder="University"
+                  value="<%= data.student_district %>">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <label class="form-control-label" for="input-email">Taluka</label>
+                <input type="text" class="form-control" placeholder="College Name"
+                  value="<%= data.student_taluka %>">
+              </div>
+              <div class="col-lg-6">
+                <label class="form-control-label" for="input-email">Academic year</label>
+                <input type="text" class="form-control" placeholder="University"
+                  value="<%= data.student_academic_yr %>">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <label class="form-control-label" for="input-email">Education
+                  status</label>
+                <input type="text" class="form-control" placeholder="College Name"
+                  value="<%= data.student_edu_status %>">
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+              data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
