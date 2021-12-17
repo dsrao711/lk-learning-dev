@@ -1,18 +1,16 @@
-// var mysqlConnection = require('../../config/connection')
+var mysqlConnection = require('../../config/connection')
 
-// const getStates = () => {
+getStates = () => {
+    sql_statement = `SELECT * from state`
+    return new Promise((resolve, reject) => {
+        mysqlConnection.query(sql_statement, (err, rows) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve(rows);
+        })
+    })
+}
 
-//     var states ; 
-//     sql_statement = `SELECT * from state`
-//     mysqlConnection.query(sql_statement , (err,rows,fields) => {
-//         if(err){
-//             throw err
-//         }
-//         states = rows; 
-//     })
-//     return states
-
-// }
-
-// module.exports = getStates;
+module.exports = getStates;
 

@@ -149,29 +149,45 @@
                                             </div>
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">University</label>
-                                              <input type="text" class="form-control" placeholder="University"
-                                                value="<%= data.university_name %>">
+                                              <select class="form-control" data-toggle="select" title="Simple select"
+                                                data-placeholder="Select a state">
+                                                <% universities.forEach(function(u) { %>
+                                                  <option value="<%= u.university_id %>"><%= u.university_name %></option>
+                                                <% }) %>
+                                              </select>
                                             </div>
                                           </div>
 
                                           <div class="row">
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">College</label>
-                                              <input type="text" class="form-control" placeholder="College Name"
-                                                value="<%= data.college_name %>">
+                                              <select class="form-control" data-toggle="select" title="Simple select"
+                                                data-placeholder="Select a state">
+                                                <% colleges.forEach(function(coll) { %>
+                                                  <option value="<%= coll.college_id %>"><%= coll.college_name %></option>
+                                                <% }) %>
+                                              </select>
                                             </div>
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">Course</label>
-                                              <input type="text" class="form-control" placeholder="University"
-                                                value="<%= data.course_name %>">
+                                              <select class="form-control" data-toggle="select" title="Simple select"
+                                                data-placeholder="Select a course">
+                                                <% courses.forEach(function(course) { %>
+                                                  <option value="<%= course.course_id %>"><%= course.course_name %></option>
+                                                <% }) %>
+                                              </select>
                                             </div>
                                           </div>
 
                                           <div class="row">
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">Branch</label>
-                                              <input type="text" class="form-control" placeholder="College Name"
-                                                value="<%= data.branch_name %>">
+                                              <select class="form-control" data-toggle="select" title="Simple select"
+                                                data-placeholder="Select a branch">
+                                                <% branches.forEach(function(b) { %>
+                                                  <option value="<%= b.branch_id %>"><%= b.branch_name %></option>
+                                                <% }) %>
+                                              </select>
                                             </div>
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">Semester</label>
@@ -193,16 +209,24 @@
                                             </div>
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">District</label>
-                                              <input type="text" class="form-control" placeholder="University"
-                                                value="<%= data.student_district %>">
+                                              <select class="form-control" data-toggle="select" title="Simple select"
+                                                data-placeholder="Select a state">
+                                                <% districts.forEach(function(d) { %>
+                                                  <option value="<%= d.districtid%>"><%= d.district_title %></option>
+                                                <% }) %>
+                                              </select>
                                             </div>
                                           </div>
 
                                           <div class="row">
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">Taluka</label>
-                                              <input type="text" class="form-control" placeholder="College Name"
-                                                value="<%= data.student_taluka %>">
+                                              <select class="form-control" data-toggle="select" title="Simple select"
+                                                data-placeholder="Select a taluka">
+                                                <% cities.forEach(function(c) { %>
+                                                  <option value="<%= c.name %>"><%= c.name %></option>
+                                                <% }) %>
+                                              </select>
                                             </div>
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">Academic year</label>

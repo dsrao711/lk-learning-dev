@@ -1,17 +1,19 @@
 var mysqlConnection = require('../../config/connection')
 
-const getStates = () => {
+getCities = () => {
 
     sql_statement = `SELECT * from  city`
-    mysqlConnection.query(sql_statement, (err, rows, fields) => {
-        if (!err) {
-            return rows
-        } else {
-            return "Error"
-        }
+    return new Promise((resolve , reject) => {
+        mysqlConnection.query(sql_statement, (err, rows) => {
+            if (err) {
+                return reject(err)
+            } else {
+                return resolve(rows)
+            }
+        })
     })
 }
 
-module.exports = getStates ; 
+module.exports = getCities ; 
 
  

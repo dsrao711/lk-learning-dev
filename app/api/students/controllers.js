@@ -1,29 +1,24 @@
 const { useColors } = require('debug/src/browser')
 var mysqlConnection = require('../../config/connection')
-// var getStates = require('../utils/getStates')
+var getStates = require('../utils/getStates')
 var getDistricts = require('../utils/getDistricts')
-var getCity = require('../utils/getCity')
-var states;
-
-getStates = () => {
-    sql_statement = `SELECT * from state`
-    return new Promise((resolve, reject) => {
-        mysqlConnection.query(sql_statement, (err, rows) => {
-            if (err) {
-                return reject(err);
-            }
-            return resolve(rows);
-        })
-    })
-}
+var getCities = require('../utils/getCity')
+var getUniversities = require('../utils/getUniversity')
+var getColleges = require('../utils/getCollege')
+var getCourses = require('../utils/getCourses')
+var getBranches = require('../utils/getBranches')
 
 // Get students page
 exports.getStudents = async function (req, res) {
 
     const states = await getStates()
-    console.log("Printing states....")
-    console.log(states)
-    
+    const districts = await getDistricts()
+    const cities = await getCities()
+    const universities = await getUniversities()
+    const colleges = await getColleges()
+    const courses = await getCourses()
+    const branches = await getBranches()
+
     var sql_statement = `
     SELECT 
         s.student_id , s.student_name , s.student_email , s.student_mobile_number ,
@@ -46,7 +41,13 @@ exports.getStudents = async function (req, res) {
             res.status(200)
                 .render('students/students.ejs', {
                     data: rows,
-                    states: states
+                    states: states , 
+                    districts : districts , 
+                    cities : cities , 
+                    universities : universities ,
+                    colleges : colleges , 
+                    courses : courses,
+                    branches : branches 
                 })
         } else {
             console.log(err)
