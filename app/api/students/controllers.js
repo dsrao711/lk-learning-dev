@@ -1,11 +1,11 @@
 const { useColors } = require('debug/src/browser')
 var mysqlConnection = require('../../config/connection')
 var getStates = require('../utils/getStates')
-// var getDistricts = require('../utils/getDistricts')
-// var getCity = require('../utils/getCity')
+var getDistricts = require('../utils/getDistricts')
+var getCity = require('../utils/getCity')
 
 // Get students page
-exports.getStudents = function (req, res) {
+exports.getStudents =  (req, res) => {
 
     var sql_statement = `
     SELECT 
@@ -20,16 +20,21 @@ exports.getStudents = function (req, res) {
         JOIN branch AS b ON s.branch_id = b.branch_id
         JOIN semester AS sem ON s.semester_id = sem.semester_id
         JOIN university AS u ON s.university_id = u.university_id
-    `
 
+    `
+    var states ; 
     mysqlConnection.query(sql_statement, (err, rows, fields) => {
         if (!err) {
-            // Fetch states , district ,taluka for select dropdown menu 
-            // var states = getStates()
-            // var districts = getDistricts()
-            // var cities = getCity()
-            res.status(200).render('students/students.ejs', { data: rows })
+            // Getting states 
+            states = getStates()
+            console.log("Printing states....")
+            console.log(states)
 
+            res.status(200)
+                .render('students/students.ejs', {
+                    data: rows,
+                    states: states
+                })
         } else {
             console.log(err)
             res.send(fields)
