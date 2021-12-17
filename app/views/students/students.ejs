@@ -184,7 +184,11 @@
 
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">State</label>
-                                              
+                                              <select class="form-control" data-toggle="select" title="Simple select"
+                                                data-placeholder="Select a state">
+                                                <% states.forEach(function(state) { %>
+                                                  <option><%= state.state_title %></option>
+                                                <% }) %>
                                               </select>
                                             </div>
                                             <div class="col-lg-6">

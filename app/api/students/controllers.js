@@ -1,12 +1,29 @@
 const { useColors } = require('debug/src/browser')
 var mysqlConnection = require('../../config/connection')
-var getStates = require('../utils/getStates')
+// var getStates = require('../utils/getStates')
 var getDistricts = require('../utils/getDistricts')
 var getCity = require('../utils/getCity')
+var states;
+
+getStates = () => {
+    sql_statement = `SELECT * from state`
+    return new Promise((resolve, reject) => {
+        mysqlConnection.query(sql_statement, (err, rows) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve(rows);
+        })
+    })
+}
 
 // Get students page
-exports.getStudents =  (req, res) => {
+exports.getStudents = async function (req, res) {
 
+    const states = await getStates()
+    console.log("Printing states....")
+    console.log(states)
+    
     var sql_statement = `
     SELECT 
         s.student_id , s.student_name , s.student_email , s.student_mobile_number ,
@@ -22,14 +39,10 @@ exports.getStudents =  (req, res) => {
         JOIN university AS u ON s.university_id = u.university_id
 
     `
-    var states ; 
+
     mysqlConnection.query(sql_statement, (err, rows, fields) => {
         if (!err) {
             // Getting states 
-            states = getStates()
-            console.log("Printing states....")
-            console.log(states)
-
             res.status(200)
                 .render('students/students.ejs', {
                     data: rows,
