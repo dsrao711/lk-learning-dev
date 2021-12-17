@@ -109,9 +109,8 @@
                                         style="color : #172b4d"></i></button>
                                   </td>
                                   <td class="delete">
-                                    <button type="submit" class="btn btn-sm" data-toggle="modal"
-                                      data-target="#examplemodal_delete"><i class="fa fa-trash"
-                                        style="color : #172b4d"></i></button>
+                                    <a class="btn btn-sm" href = "/students/delete/<%= data.student_id %>"><i class="fa fa-trash"
+                                        style="color : #172b4d"></i></a>
                                   </td>
                                 </tr>
                                 <!-- Edit modal -->
@@ -125,34 +124,34 @@
                                           <span aria-hidden="true">&times;</span>
                                         </button>
                                       </div>
-                                      
-                                      <form  role="form" action="/students/edit" method="POST">
-                                      
+
+                                      <form role="form" action="/students/edit" method="POST">
+
                                         <div class="modal-body">
 
                                           <div class="row">
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">Name</label>
-                                              <input type="text" class="form-control" placeholder="College Name" name = "student_name"
-                                                value="<%= data.student_name %>">
+                                              <input type="text" class="form-control" placeholder="College Name"
+                                                name="student_name" value="<%= data.student_name %>">
                                             </div>
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">Email</label>
-                                              <input type="text" class="form-control" placeholder="University" name = "student_email"
-                                                value="<%= data.student_email %>">
+                                              <input type="text" class="form-control" placeholder="University"
+                                                name="student_email" value="<%= data.student_email %>">
                                             </div>
                                           </div>
 
                                           <div class="row">
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">Phone number</label>
-                                              <input type="text" class="form-control" placeholder="College Name" name = "student_mobile_number"
-                                                value="<%= data.student_mobile_number %>">
+                                              <input type="text" class="form-control" placeholder="College Name"
+                                                name="student_mobile_number" value="<%= data.student_mobile_number %>">
                                             </div>
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">University</label>
-                                              <select class="form-control" data-toggle="select" title="Simple select" name = "university_id"
-                                                data-placeholder="Select a state">
+                                              <select class="form-control" data-toggle="select" title="Simple select"
+                                                name="university_id" data-placeholder="Select a state">
                                                 <% universities.forEach(function(u) { %>
                                                   <option value="<%= u.university_id %>">
                                                     <%= u.university_name %>
@@ -166,8 +165,8 @@
 
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">College</label>
-                                              <select class="form-control" data-toggle="select" title="Simple select" name = "college_id"
-                                                data-placeholder="Select a state">
+                                              <select class="form-control" data-toggle="select" title="Simple select"
+                                                name="college_id" data-placeholder="Select a state">
                                                 <% colleges.forEach(function(coll) { %>
                                                   <option value="<%= coll.college_id %>">
                                                     <%= coll.college_name %>
@@ -177,8 +176,8 @@
                                             </div>
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">Course</label>
-                                              <select class="form-control" data-toggle="select" title="Simple select" name = "course_id"
-                                                data-placeholder="Select a course"> 
+                                              <select class="form-control" data-toggle="select" title="Simple select"
+                                                name="course_id" data-placeholder="Select a course">
                                                 <% courses.forEach(function(course) { %>
                                                   <option value="<%= course.course_id %>">
                                                     <%= course.course_name %>
@@ -193,8 +192,8 @@
 
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">Branch</label>
-                                              <select class="form-control" data-toggle="select" title="Simple select" name = "branch_id"
-                                                data-placeholder="Select a branch">
+                                              <select class="form-control" data-toggle="select" title="Simple select"
+                                                name="branch_id" data-placeholder="Select a branch">
                                                 <% branches.forEach(function(b) { %>
                                                   <option value="<%= b.branch_id %>">
                                                     <%= b.branch_name %>
@@ -204,8 +203,8 @@
                                             </div>
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">Semester</label>
-                                              <select class="form-control" data-toggle="select" title="Simple select" name = "semester_id"
-                                                data-placeholder="Select a sem">
+                                              <select class="form-control" data-toggle="select" title="Simple select"
+                                                name="semester_id" data-placeholder="Select a sem">
                                                 <% sem.forEach(function(s) { %>
                                                   <option value="<%= s.semester_id %>">
                                                     <%= s.semester_name %>
@@ -219,8 +218,8 @@
 
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">State</label>
-                                              <select class="form-control" data-toggle="select" title="Simple select" name = "student_state"
-                                                data-placeholder="Select a state">
+                                              <select class="form-control" data-toggle="select" title="Simple select"
+                                                name="student_state" data-placeholder="Select a state">
                                                 <% states.forEach(function(state) { %>
                                                   <option value="<%= state.state_id %>">
                                                     <%= state.state_title %>
@@ -231,8 +230,8 @@
 
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">District</label>
-                                              <select class="form-control" data-toggle="select" title="Simple select" name = "student_district"
-                                                data-placeholder="Select a state">
+                                              <select class="form-control" data-toggle="select" title="Simple select"
+                                                name="student_district" data-placeholder="Select a state">
                                                 <% districts.forEach(function(d) { %>
                                                   <option value="<%= d.districtid%>">
                                                     <%= d.district_title %>
@@ -246,8 +245,8 @@
                                           <div class="row">
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">Taluka</label>
-                                              <select class="form-control" data-toggle="select" title="Simple select" name = "student_taluka"
-                                                data-placeholder="Select a taluka">
+                                              <select class="form-control" data-toggle="select" title="Simple select"
+                                                name="student_taluka" data-placeholder="Select a taluka">
                                                 <% cities.forEach(function(c) { %>
                                                   <option value="<%= c.id %>">
                                                     <%= c.name %>
@@ -257,8 +256,8 @@
                                             </div>
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">Academic year</label>
-                                              <input type="text" class="form-control" placeholder="University" name = "student_acad_yr"
-                                                value="<%= data.student_academic_yr %>">
+                                              <input type="text" class="form-control" placeholder="University"
+                                                name="student_acad_yr" value="<%= data.student_academic_yr %>">
                                             </div>
                                           </div>
 
@@ -266,15 +265,51 @@
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">Education
                                                 status</label>
-                                              <select class="form-control" data-toggle="select" title="Simple select" name = "student_edu_status"
-                                                value="<%= data.student_edu_status %>">
+                                              <select class="form-control" data-toggle="select" title="Simple select"
+                                                name="student_edu_status" value="<%= data.student_edu_status %>">
                                                 <option value="Studying">Studying</option>
                                                 <option value="Pass out">Pass out</option>
                                               </select>
                                             </div>
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">ID</label>
-                                              <input type="text" class="form-control" placeholder="ID" name = "student_id" value="<%= data.student_id %>" >
+                                              <input type="text" class="form-control" placeholder="ID" name="student_id"
+                                                value="<%= data.student_id %>">
+                                            </div>
+                                          </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                          <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <!-- DELETE modal -->
+                                <div class="modal fade" id="examplemodal_delete-<%= data.student_id %>" tabindex="-1"
+                                  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">DeleteStudent data</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+
+                                      <form role="form" action="/students/delete/" method="DELETE">
+
+                                        <div class="modal-body">
+
+                                          <div class="row">
+                                            <div class="col-lg-6">
+                                              <label class="form-control-label" for="input-email">Student id</label>
+                                              <input type="text" class="form-control" placeholder="College Name"
+                                                name="student_id" value="<%= data.student_id %>">
                                             </div>
                                           </div>
 
