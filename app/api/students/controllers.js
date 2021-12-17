@@ -7,6 +7,7 @@ var getUniversities = require('../utils/getUniversity')
 var getColleges = require('../utils/getCollege')
 var getCourses = require('../utils/getCourses')
 var getBranches = require('../utils/getBranches')
+var getSemesters = require('../utils/getSem')
 
 // Get students page
 exports.getStudents = async function (req, res) {
@@ -18,6 +19,7 @@ exports.getStudents = async function (req, res) {
     const colleges = await getColleges()
     const courses = await getCourses()
     const branches = await getBranches()
+    const sem = await getSemesters()
 
     var sql_statement = `
     SELECT 
@@ -47,7 +49,8 @@ exports.getStudents = async function (req, res) {
                     universities : universities ,
                     colleges : colleges , 
                     courses : courses,
-                    branches : branches 
+                    branches : branches ,
+                    sem : sem 
                 })
         } else {
             console.log(err)

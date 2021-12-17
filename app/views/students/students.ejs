@@ -191,8 +191,12 @@
                                             </div>
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">Semester</label>
-                                              <input type="text" class="form-control" placeholder="University"
-                                                value="<%= data.semester_name %>">
+                                              <select class="form-control" data-toggle="select" title="Simple select"
+                                                data-placeholder="Select a sem">
+                                                <% sem.forEach(function(s) { %>
+                                                  <option value="<%= s.semester_id %>"><%= s.semester_name %></option>
+                                                <% }) %>
+                                              </select>
                                             </div>
                                           </div>
 
@@ -239,8 +243,10 @@
                                             <div class="col-lg-6">
                                               <label class="form-control-label" for="input-email">Education
                                                 status</label>
-                                              <input type="text" class="form-control" placeholder="College Name"
-                                                value="<%= data.student_edu_status %>">
+                                              <select class="form-control" data-toggle="select" title="Simple select" value="<%= data.student_edu_status %>">
+                                                <option value = "Studying" >Studying</option>
+                                                <option value = "Pass out" >Pass out</option>
+                                              </select>
                                             </div>
                                           </div>
 
