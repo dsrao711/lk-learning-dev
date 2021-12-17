@@ -24,7 +24,7 @@ exports.getStudents = async function (req, res) {
     var sql_statement = `
     SELECT 
         s.student_id , s.student_name , s.student_email , s.student_mobile_number ,
-        s.student_state , s.student_district , s.student_taluka , 
+        st.state_title , d.district_title , ct.name , 
         s.student_edu_status , s.student_academic_yr , 
         c.college_name ,cr.course_name , b.branch_name , 
         sem.semester_name , u.university_name  
@@ -34,23 +34,25 @@ exports.getStudents = async function (req, res) {
         JOIN branch AS b ON s.branch_id = b.branch_id
         JOIN semester AS sem ON s.semester_id = sem.semester_id
         JOIN university AS u ON s.university_id = u.university_id
+        JOIN state AS st ON s.state_id = st.state_id
+        JOIN district AS d ON s.district_id = d.districtid
+        JOIN city AS ct ON s.city_id = ct.id
 
     `
 
     mysqlConnection.query(sql_statement, (err, rows, fields) => {
         if (!err) {
-            // Getting states 
             res.status(200)
                 .render('students/students.ejs', {
                     data: rows,
-                    states: states , 
-                    districts : districts , 
-                    cities : cities , 
-                    universities : universities ,
-                    colleges : colleges , 
-                    courses : courses,
-                    branches : branches ,
-                    sem : sem 
+                    states: states,
+                    districts: districts,
+                    cities: cities,
+                    universities: universities,
+                    colleges: colleges,
+                    courses: courses,
+                    branches: branches,
+                    sem: sem
                 })
         } else {
             console.log(err)
@@ -61,60 +63,69 @@ exports.getStudents = async function (req, res) {
 }
 
 // Update student 
-exports.editStudent = function (req, res) {
+exports.editStudent = async function (req, res) {
     console.log(req.body)
-    // Input
-    // Get ids only 
+    
     const student_name = req.body.student_name;
     const student_mobile_number = req.body.student_mobile_number
     const student_email = req.body.student_email
     const student_state = req.body.student_state
     const student_district = req.body.student_district
     const student_taluka = req.body.student_taluka
-    const college_name = req.body.college_id
-    const university_name = req.body.university_id
+    const college_id = req.body.college_id
+    const university_id = req.body.university_id
     const course_id = req.body.course_id
     const branch_id = req.body.branch_id
     const semester_id = req.body.semester_id
+    const student_acad_yr = req.body.student_acad_yr
+    const student_edu_status = req.body.student_edu_status
+    const student_id = req.body.student_id
+
+    const states = await getStates()
+    const districts = await getDistricts()
+    const cities = await getCities()
+    const universities = await getUniversities()
+    const colleges = await getColleges()
+    const courses = await getCourses()
+    const branches = await getBranches()
+    const sem = await getSemesters()
 
     var sql_statement = `
     UPDATE student 
         SET student_name = ? , 
             student_mobile_number = ? ,
             student_email = ? ,
-            student_state = ? , 
-            student_district = ? ,
-            student_taluka = ? ,
+            state_id = ? , 
+            district_id = ? ,
+            city_id = ? ,
             college_id = ? , 
             branch_id = ? ,
             semester_id = ? ,   
             university_id = ? , 
-            course_id = ? 
+            course_id = ? ,
+            student_edu_status = ? , 
+            student_academic_yr = ?
+    WHERE student_id = ? ;
     `
     var users_input = [student_name, student_mobile_number, student_email,
         student_state, student_district, student_taluka,
         college_id, branch_id, semester_id, university_id,
-        course_id];
+        course_id, student_edu_status, student_acad_yr, student_id, student_id];
 
     try {
-        mysqlConnection.query(sql_statement, users_input, (err, rows, fields) => {
-            if (!err) {
-                res
-                    .status(204)
-                    .render('students/students.ejs', { alert: "Updated entry" })
-            } else {
-                res
-                    .status(200)
-                    .render('students/student.ejs', { alert: "Error updating entry , Please try again !" })
+        mysqlConnection.query(sql_statement, users_input, (err, rows) => {
+            if (err) {
+                res.status(400).send("failed!!!")
             }
-
+            console.log("UDPATED")
+            res
+            .status(200)
+            .redirect('/students')
         })
     } catch (err) {
         res
             .status(500)
             .json({ "message": "Internal server error!" })
     }
-
-
 }
 
