@@ -12,9 +12,9 @@ exports.registerStudent = function (req, res) {
     const student_password = req.body.student_password;
     const student_mobile_number = req.body.student_mobile_number
     const student_email = req.body.student_email
-    const student_state = req.body.student_state
-    const student_district = req.body.student_district
-    const student_taluka = req.body.student_taluka
+    const student_state = req.body.state_id
+    const student_district = req.body.district_id
+    const student_taluka = req.body.city_id
     const college_id = req.body.college_id
     const university_id = req.body.university_id
     const course_id = req.body.course_id
@@ -35,7 +35,7 @@ exports.registerStudent = function (req, res) {
                     res.status(409).json({ "message" : "User already exists"})
                 } else {
                     // Insert
-                    mysqlConnection.query("INSERT INTO student(student_id , student_name , student_password , student_mobile_number , student_email , student_state , student_district , student_taluka , college_id , university_id , branch_id , course_id , semester_id , student_edu_status , student_academic_yr) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [0, student_name, hash, student_mobile_number, student_email, student_state, student_district, student_taluka, college_id, university_id, branch_id, course_id, semester_id, student_edu_status, student_academic_yr], (err, rows, fields) => {
+                    mysqlConnection.query("INSERT INTO student(student_id , student_name , student_password , student_mobile_number , student_email , state_id , district_id , city_id , college_id , university_id , branch_id , course_id , semester_id , student_edu_status , student_academic_yr) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [0, student_name, hash, student_mobile_number, student_email, student_state, student_district, student_taluka, college_id, university_id, branch_id, course_id, semester_id, student_edu_status, student_academic_yr], (err, rows, fields) => {
                         if (!err) {
                             res.status(200).send(rows);
                         } else {
