@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var connection = require('./config/connection')
 const expressLayouts = require('express-ejs-layouts')
+const expressOasGenerator = require('express-oas-generator');
+
 
 // Routes
 var loginRouter = require('./api/adminlogin/routes')
@@ -26,12 +28,21 @@ const { login } = require('./api/auth/controller');
 
 var app = express();
 
+
+expressOasGenerator.handleResponses(app,
+    function (spec) { return spec; },
+    'filename.json',
+    60 * 1000,
+    'api-docs'
+);
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // Layoutts
-app.set('layouts' , './layouts/layout.ejs')
+app.set('layouts', './layouts/layout.ejs')
 
 
 app.use(logger('dev'));
@@ -41,8 +52,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-app.use('/' , dashboardRouter);
-app.use('/login' , loginRouter)
+app.use('/', dashboardRouter);
+app.use('/login', loginRouter)
 app.use('/auth', authRouter);
 app.use('/authors', authorsRouter);
 app.use('/students', studentRouter);
@@ -58,12 +69,12 @@ app.use('/universities', universitiesRouter);
 app.use('/location', locationRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -73,4 +84,8 @@ app.use(function(err, req, res, next) {
     res.render('error');
 });
 
+expressOasGenerator.handleRequests();
+
 module.exports = app;
+
+

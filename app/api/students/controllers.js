@@ -62,6 +62,43 @@ exports.getStudents = async function (req, res) {
 
 }
 
+// Get student
+
+// Get all students
+exports.getAllStudents = function (req, res) {
+
+    var sql_statement = `
+    SELECT 
+        s.student_id , s.student_name , s.student_email , s.student_mobile_number ,
+        st.state_title , d.district_title , ct.name , 
+        s.student_edu_status , s.student_academic_yr , 
+        c.college_name ,cr.course_name , b.branch_name , 
+        sem.semester_name , u.university_name  
+    FROM student AS s
+        JOIN college AS c ON s.college_id = c.college_id
+        JOIN course AS cr ON s.course_id = cr.course_id
+        JOIN branch AS b ON s.branch_id = b.branch_id
+        JOIN semester AS sem ON s.semester_id = sem.semester_id
+        JOIN university AS u ON s.university_id = u.university_id
+        JOIN state AS st ON s.state_id = st.state_id
+        JOIN district AS d ON s.district_id = d.districtid
+        JOIN city AS ct ON s.city_id = ct.id
+
+    `
+    mysqlConnection.query(sql_statement, (err, rows, fields) => {
+        if (!err) {
+            res
+            .status(200)
+            .json({data : rows})
+        } else {
+            res
+            .status(400)
+            .json({"message" : err})
+        }
+    })
+
+}
+
 // Update student 
 exports.editStudent = async function (req, res) {
     console.log(req.body)

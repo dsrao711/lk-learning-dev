@@ -1,0 +1,317 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "/",
+        "responses": {
+          "302": {
+            "description": "Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "Found. Redirecting to /login"
+                }
+              },
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Found. Redirecting to /login"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "<h1>Not Found</h1>\n<h2></h2>\n<pre></pre>\n"
+                }
+              },
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<h1>Not Found</h1>\n<h2></h2>\n<pre></pre>\n"
+                }
+              }
+            }
+          }
+        },
+        "tags": []
+      }
+    },
+    "/login": {
+      "get": {
+        "summary": "/login",
+        "responses": {},
+        "tags": []
+      },
+      "post": {
+        "summary": "/login",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/login/logout": {
+      "post": {
+        "summary": "/login/logout",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "summary": "/auth/register",
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "<h1>Unexpected token , in JSON at position 99</h1>\n<h2></h2>\n<pre></pre>\n"
+                }
+              },
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<h1>Unexpected token , in JSON at position 99</h1>\n<h2></h2>\n<pre></pre>\n"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User already exists"
+                    }
+                  }
+                }
+              },
+              "text/html": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User already exists"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": []
+      }
+    },
+    "/auth/test": {
+      "get": {
+        "summary": "/auth/test",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "/auth/login",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/auth/test-accesstoken": {},
+    "/authors/getAuthors": {
+      "get": {
+        "summary": "/authors/getAuthors",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/authors": {
+      "get": {
+        "summary": "/authors",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/students": {
+      "get": {
+        "summary": "/students",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/students/edit": {
+      "post": {
+        "summary": "/students/edit",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/students/delete/{id}": {
+      "get": {
+        "summary": "/students/delete/{id}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/materials/getMaterials": {
+      "get": {
+        "summary": "/materials/getMaterials",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/materials/getAcademicMaterials": {
+      "get": {
+        "summary": "/materials/getAcademicMaterials",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/materials/getNonAcademicMaterials": {
+      "get": {
+        "summary": "/materials/getNonAcademicMaterials",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/materials/getMaterialsBySem": {
+      "get": {
+        "summary": "/materials/getMaterialsBySem",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/materials/getMaterialsByCategoryandSem": {
+      "get": {
+        "summary": "/materials/getMaterialsByCategoryandSem",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/branches/getBranches": {
+      "get": {
+        "summary": "/branches/getBranches",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/branches": {
+      "get": {
+        "summary": "/branches",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/categories/getCategories": {
+      "get": {
+        "summary": "/categories/getCategories",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/colleges/getColleges": {
+      "get": {
+        "summary": "/colleges/getColleges",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/courses/getCourses": {
+      "get": {
+        "summary": "/courses/getCourses",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/courses": {
+      "get": {
+        "summary": "/courses",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/orders": {
+      "get": {
+        "summary": "/orders",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/semesters/getSemesters": {
+      "get": {
+        "summary": "/semesters/getSemesters",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/subjects": {
+      "get": {
+        "summary": "/subjects",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/universities/getUniversities": {
+      "get": {
+        "summary": "/universities/getUniversities",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/universities": {
+      "get": {
+        "summary": "/universities",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/location/states": {
+      "get": {
+        "summary": "/location/states",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/location/district": {
+      "get": {
+        "summary": "/location/district",
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/location/city": {
+      "get": {
+        "summary": "/location/city",
+        "responses": {},
+        "tags": []
+      }
+    }
+  },
+  "tags": [],
+  "info": {
+    "title": "app",
+    "version": "0.0.0",
+    "description": "Specification JSONs: [v2](/api-spec/v2), [v3](/api-spec/v3)."
+  }
+}

@@ -1,0 +1,401 @@
+{
+  "swagger": "2.0",
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "/",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "302": {
+            "description": "Found",
+            "schema": {
+              "type": "string",
+              "example": "Found. Redirecting to /login"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "type": "string",
+              "example": "<h1>Not Found</h1>\n<h2></h2>\n<pre></pre>\n"
+            }
+          }
+        },
+        "tags": [],
+        "produces": [
+          "text/plain",
+          "text/html"
+        ]
+      }
+    },
+    "/login": {
+      "get": {
+        "summary": "/login",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      },
+      "post": {
+        "summary": "/login",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/login/logout": {
+      "post": {
+        "summary": "/login/logout",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "summary": "/auth/register",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "string",
+              "example": "<h1>Unexpected token , in JSON at position 99</h1>\n<h2></h2>\n<pre></pre>\n"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "User already exists"
+                }
+              }
+            }
+          }
+        },
+        "tags": [],
+        "produces": [
+          "application/json",
+          "text/html"
+        ]
+      }
+    },
+    "/auth/test": {
+      "get": {
+        "summary": "/auth/test",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "/auth/login",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/auth/test-accesstoken": {},
+    "/authors/getAuthors": {
+      "get": {
+        "summary": "/authors/getAuthors",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/authors": {
+      "get": {
+        "summary": "/authors",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/students": {
+      "get": {
+        "summary": "/students",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/students/edit": {
+      "post": {
+        "summary": "/students/edit",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/students/delete/{id}": {
+      "get": {
+        "summary": "/students/delete/{id}",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/materials/getMaterials": {
+      "get": {
+        "summary": "/materials/getMaterials",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/materials/getAcademicMaterials": {
+      "get": {
+        "summary": "/materials/getAcademicMaterials",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/materials/getNonAcademicMaterials": {
+      "get": {
+        "summary": "/materials/getNonAcademicMaterials",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/materials/getMaterialsBySem": {
+      "get": {
+        "summary": "/materials/getMaterialsBySem",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/materials/getMaterialsByCategoryandSem": {
+      "get": {
+        "summary": "/materials/getMaterialsByCategoryandSem",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/branches/getBranches": {
+      "get": {
+        "summary": "/branches/getBranches",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/branches": {
+      "get": {
+        "summary": "/branches",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/categories/getCategories": {
+      "get": {
+        "summary": "/categories/getCategories",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/colleges/getColleges": {
+      "get": {
+        "summary": "/colleges/getColleges",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/courses/getCourses": {
+      "get": {
+        "summary": "/courses/getCourses",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/courses": {
+      "get": {
+        "summary": "/courses",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/orders": {
+      "get": {
+        "summary": "/orders",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/semesters/getSemesters": {
+      "get": {
+        "summary": "/semesters/getSemesters",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/subjects": {
+      "get": {
+        "summary": "/subjects",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/universities/getUniversities": {
+      "get": {
+        "summary": "/universities/getUniversities",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/universities": {
+      "get": {
+        "summary": "/universities",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/location/states": {
+      "get": {
+        "summary": "/location/states",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/location/district": {
+      "get": {
+        "summary": "/location/district",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    },
+    "/location/city": {
+      "get": {
+        "summary": "/location/city",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "tags": []
+      }
+    }
+  },
+  "tags": [],
+  "definitions": {},
+  "info": {
+    "title": "app",
+    "version": "0.0.0",
+    "description": "Specification JSONs: [v2](/api-spec/v2), [v3](/api-spec/v3)."
+  }
+}

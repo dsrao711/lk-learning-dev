@@ -99,7 +99,7 @@ exports.login = function (req, res) {
                         const token = auth.createToken(data)
                         console.log(token)
                         // Send response with the token
-                        res.status(200).json({message : "Successfully logged in!" , token : token , mobile_number : student_mobile_number , name : student_name })
+                        res.status(200).json({message : "Successfully logged in!" , token : token , mobile_number : student_mobile_number , name : student_name , student_id : student_id })
     
                     } else {
                         res.status(401).json({message : "Incorrect credentials"  , err : "Unauthorized access"})
