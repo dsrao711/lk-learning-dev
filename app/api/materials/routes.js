@@ -3,9 +3,8 @@ var router = express.Router()
 var controller = require('./controllers')
 
 router.get('/getMaterials' , controller.getMaterials)
-router.get('/getAcademicMaterials' , controller.getAcademicMaterials)
-router.get('/getNonAcademicMaterials' , controller.getNonAcademicMaterials)
-router.get('/getMaterialsBySem' , controller.getMaterialsBySemester)
-router.get('/getMaterialsByCategoryandSem' , controller.getMaterialsByCategoryandSem)
+router.post('/getMaterialsBySem' , controller.getMaterialsBySem)
+router.post('/getCategoryByMaterial' , controller.getCategoryByMaterial)
+router.get('/getTopic' , controller.getTopics)
 
 module.exports = router ;

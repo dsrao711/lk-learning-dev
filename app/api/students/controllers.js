@@ -62,8 +62,6 @@ exports.getStudents = async function (req, res) {
 
 }
 
-// Get student
-
 // Get all students
 exports.getAllStudents = function (req, res) {
 
