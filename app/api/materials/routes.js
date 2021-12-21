@@ -5,6 +5,7 @@ var controller = require('./controllers')
 // Admin panel
 router.get('/' , controller.getMaterialsPage)
 router.get('/plans/:id' , controller.getPlans)
+router.post('/plans/edit/:id' , controller.EditMaterial)
 
 // APIS
 router.get('/getMaterials' , controller.getMaterials)

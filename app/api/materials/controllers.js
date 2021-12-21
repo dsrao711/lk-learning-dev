@@ -1,6 +1,11 @@
 
 const mysqlConnection = require('../../config/connection')
 const mySqlConnection = require('../../config/connection')
+var getUniversities = require('../utils/getUniversity')
+var getCourses = require('../utils/getCourses')
+var getBranches = require('../utils/getBranches')
+var getSemesters = require('../utils/getSem')
+
 
 // Admin panel 
 // Get materials page
@@ -44,6 +49,11 @@ exports.getMaterialsPage = function (req, res) {
 
 exports.getPlans = async function (req, res) {
 
+    const universities = await getUniversities()
+    const courses = await getCourses()
+    const branches = await getBranches()
+    const sem = await getSemesters()
+
     var material_id = req.params.id
     var sql_statement =  `
             SELECT 
@@ -66,7 +76,14 @@ exports.getPlans = async function (req, res) {
                 console.log(rows[0])
                 res
                 .status(200)
-                .render('materials/plans.ejs' , {data : rows[0]})
+                .render('materials/plans.ejs' , {
+                    data : rows[0] , 
+                    universities : universities , 
+                    courses : courses , 
+                    branches : branches, 
+                    semesters : semesters
+                    
+                })
             }else{
                 res
                 .status(400)
@@ -81,6 +98,21 @@ exports.getPlans = async function (req, res) {
 
         
 }
+
+exports.EditMaterial = async function(req , res){
+    console.log("heerre.....")
+    console.log(req.body)
+    res.send("Hello")
+}
+
+
+
+
+
+
+
+
+
 
 
 // APIS
