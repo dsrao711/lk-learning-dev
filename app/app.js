@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var connection = require('./config/connection')
 const expressLayouts = require('express-ejs-layouts')
-const expressOasGenerator = require('express-oas-generator');
+
 
 
 // Routes
@@ -29,12 +29,6 @@ const { login } = require('./api/auth/controller');
 var app = express();
 
 
-expressOasGenerator.handleResponses(app,
-    function (spec) { return spec; },
-    'filename.json',
-    60 * 1000,
-    'api-docs'
-);
 
 
 // view engine setup
@@ -84,7 +78,7 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
-expressOasGenerator.handleRequests();
+
 
 module.exports = app;
 

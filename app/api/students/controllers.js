@@ -37,7 +37,6 @@ exports.getStudents = async function (req, res) {
         JOIN state AS st ON s.state_id = st.state_id
         JOIN district AS d ON s.district_id = d.districtid
         JOIN city AS ct ON s.city_id = ct.id
-
     `
 
     mysqlConnection.query(sql_statement, (err, rows, fields) => {
