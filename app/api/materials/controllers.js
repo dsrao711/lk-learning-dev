@@ -5,6 +5,8 @@ var getUniversities = require('../utils/getUniversity')
 var getCourses = require('../utils/getCourses')
 var getBranches = require('../utils/getBranches')
 var getSemesters = require('../utils/getSem')
+var getAuthors= require('../utils/getAuthors')
+var getSubjects = require('../utils/getSubjects')
 
 
 // Admin panel 
@@ -53,6 +55,8 @@ exports.getPlans = async function (req, res) {
     const courses = await getCourses()
     const branches = await getBranches()
     const sem = await getSemesters()
+    const authors = await getAuthors()
+    const subjects = await getSubjects()
 
     var material_id = req.params.id
     var sql_statement =  `
@@ -81,8 +85,9 @@ exports.getPlans = async function (req, res) {
                     universities : universities , 
                     courses : courses , 
                     branches : branches, 
-                    semesters : semesters
-                    
+                    semesters : sem , 
+                    authors : authors ,
+                    subjects : subjects 
                 })
             }else{
                 res
@@ -101,9 +106,90 @@ exports.getPlans = async function (req, res) {
 
 exports.EditMaterial = async function(req , res){
     console.log("heerre.....")
-    console.log(req.body)
-    res.send("Hello")
+
+     material_name = req.body.material_name , 
+     author_id = req.body.author_id , 
+     subject_id = req.body.subject_id , 
+     semester_id = req.body.semester_id , 
+     branch_id = req.body.branch_id , 
+     course_id = req.body.course_id , 
+     material_acad_type = req.body.material_acad_type , 
+     material_cost_type = req.body.material_cost_type , 
+     material_cost = req.body.material_cost, 
+
+    material_id = req.params.id
+
+    var sql_statement = `
+        UPDATE material
+            SET material_name = ? ,
+                author_id = ? , 
+                subject_id = ? ,
+                semester_id = ? , 
+                branch_id = ? , 
+                course_id = ? , 
+                material_acad_type = ? , 
+                material_cost_type = ? ,
+                material_cost = ?
+        WHERE material_id = ?
+    `
+
+    var users_input = [
+        material_name , 
+        author_id , 
+        subject_id , 
+        semester_id , 
+        branch_id , 
+        course_id ,
+        material_acad_type ,
+        material_cost_type , 
+        material_cost , 
+        material_id
+    ]
+
+    try{
+        mysqlConnection.query(sql_statement, users_input, (err, rows) => {
+            if (err) {
+                res.status(400).send("failed!!!")
+            }
+            console.log("UDPATED")
+            res
+            .status(200)
+            .redirect(`/materials/plans/${material_id}`)
+        })
+    }catch(err){
+        res
+        .status(500)
+        .json({ "message": "Internal server error!" })
+    }
+
 }
+
+exports.deleteMaterial = async function(req, res){
+
+    id = req.params.id
+    console.log(id)
+    var sql_statement = `
+        DELETE from material
+        WHERE material_id = ?
+    `
+    try {
+        mysqlConnection.query(sql_statement, [id], (err, rows) => {
+            if (err) {
+                res.send(err)
+            }
+            console.log("DELETED")
+            res
+            .status(200)
+            .redirect('/students')
+        })
+    } catch (err) {
+        res
+            .status(500)
+            .json({ "message": "Internal server error!" })
+    }
+
+}
+
 
 
 

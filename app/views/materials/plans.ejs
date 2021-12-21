@@ -113,17 +113,202 @@
 																					name="material_name" value="<%= data.material_name %>">
 																				</div>
 																			</div>
-
+																			<!-- Author , Subject -->
 																			<div class="row">
 																				<div class="col-lg-6">
 																					<label class="form-control-label" for="input-email">Author</label>
-																					<input type="text" class="form-control" placeholder="University"
-																					  name="material_author" value="<%= data.author_name %>">
+																					<select class="form-control" data-toggle="select" title="Simple select" name="author_id" data-placeholder="Select author">
+                                                									<% authors.forEach(function(a) { %>
+																						<option value="<%= a.author_id %>">
+																							<%= a.author_name %>
+																						</option>
+																						<% }) %>
+																					</select>
 																				</div>
 																				<div class="col-lg-6">
 																					<label class="form-control-label" for="input-email">Subject</label>
-																					<input type="text" class="form-control" placeholder="University"
-																					  name="material_subject" value="<%= data.author_name %>">
+																					<select class="form-control" data-toggle="select" title="Simple select" name="subject_id" data-placeholder="Select subject">
+																						<% subjects.forEach(function(s) { %>
+																							<option value="<%= s.subject_id %>">
+																								<%= s.subject_name %>
+																							</option>
+																							<% }) %>
+																					</select>
+																				</div>
+																			</div>
+																			<!-- Subject , Sem -->
+																			<div class="row">
+																				<div class="col-lg-6">
+																					<label class="form-control-label" for="input-email">Semester</label>
+																					<select class="form-control" data-toggle="select" title="Simple select" name="semester_id" data-placeholder="Select author">
+                      <% semesters.forEach(function(sm) { %>
+																						<option value="<%= sm.semester_id %>">
+																							<%= sm.semester_name %>
+																						</option>
+																						<% }) %>
+																					</select>
+																				</div>
+																				<div class="col-lg-6">
+																					<label class="form-control-label" for="input-email">Branch</label>
+																					<select class="form-control" data-toggle="select" title="Simple select" name="branch_id" data-placeholder="Select subject">
+																						<% branches.forEach(function(b) { %>
+																							<option value="<%= b.branch_id %>">
+																								<%= b.branch_name %>
+																							</option>
+																							<% }) %>
+																					</select>
+																				</div>
+																			</div>
+																			<!-- Course , Acad type -->
+																			<div class="row">
+																				<div class="col-lg-6">
+																					<label class="form-control-label" for="input-email">Course</label>
+																					<select class="form-control" data-toggle="select" title="Simple select" name="course_id" data-placeholder="Select author">
+                      	<% courses.forEach(function(c) { %>
+																						<option value="<%= c.course_id %>">
+																							<%= c.course_name %>
+																						</option>
+																						<% }) %>
+																					</select>
+																				</div>
+																				<div class="col-lg-6">
+																					<label class="form-control-label" for="input-email">Academic Type</label>
+																					<select class="form-control" data-toggle="select" title="Simple select" name="material_acad_type" data-placeholder="Select">
+																							<option value = "academic">academic</option>
+																							<option value = "non - academic">non-academic</option>
+																					</select>
+																				</div>
+																			</div>
+
+																			<div class="row">
+
+																				<div class="col-lg-6">
+																					<label class="form-control-label" for="input-email">Cost Type</label>
+																					<select class="form-control" data-toggle="select" title="Simple select" name="material_cost_type" data-placeholder="Select">
+																							<option value = "free">Free</option>
+																							<option value = "paid">Paid</option>
+																					</select>
+																				</div>
+
+																				<div class="col-lg-6">
+																					<label class="form-control-label" for="input-email">Cost</label>
+																					<input type="text" class="form-control" placeholder="Cost" name="material_cost" value="<%= data.material_cost %>">
+																				</div>
+																			</div>
+																		</div>
+																		<div class="modal-footer">
+																			<button type="button"class="btn btn-secondary" data-dismiss="modal">Close</button>
+																			<button type="submit" class="btn btn-primary">Submit</button>
+																		</div>
+																	</form>
+																</div>
+															</div>
+														</div>
+
+														<!-- Delete modal -->
+														<div class="modal fade" id="examplemodal" tabindex="-1"
+															role="dialog" aria-labelledby="exampleModalLabel"
+															aria-hidden="true">
+															<div class="modal-dialog modal-dialog-centered"
+																role="document">
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<h5 class="modal-title" id="exampleModalLabel">Edit Student data</h5>
+																		<button type="button" class="close"
+																			data-dismiss="modal" aria-label="Close">
+																			<span aria-hidden="true">&times;</span>
+																		</button>
+																	</div>
+																	<form role="form" action="/materials/plans/edit/<%= data.material_id %>" method="POST">
+																		<div class="modal-body">
+
+																			<div class="row">
+																				<div class="col-lg-12">
+																				  <label class="form-control-label" for="input-email">Material Name</label>
+																				  <input type="text" class="form-control" placeholder="College Name"
+																					name="material_name" value="<%= data.material_name %>">
+																				</div>
+																			</div>
+																			<!-- Author , Subject -->
+																			<div class="row">
+																				<div class="col-lg-6">
+																					<label class="form-control-label" for="input-email">Author</label>
+																					<select class="form-control" data-toggle="select" title="Simple select" name="author_id" data-placeholder="Select author">
+                                                									<% authors.forEach(function(a) { %>
+																						<option value="<%= a.author_id %>">
+																							<%= a.author_name %>
+																						</option>
+																						<% }) %>
+																					</select>
+																				</div>
+																				<div class="col-lg-6">
+																					<label class="form-control-label" for="input-email">Subject</label>
+																					<select class="form-control" data-toggle="select" title="Simple select" name="subject_id" data-placeholder="Select subject">
+																						<% subjects.forEach(function(s) { %>
+																							<option value="<%= s.subject_id %>">
+																								<%= s.subject_name %>
+																							</option>
+																							<% }) %>
+																					</select>
+																				</div>
+																			</div>
+																			<!-- Subject , Sem -->
+																			<div class="row">
+																				<div class="col-lg-6">
+																					<label class="form-control-label" for="input-email">Semester</label>
+																					<select class="form-control" data-toggle="select" title="Simple select" name="semester_id" data-placeholder="Select author">
+                      <% semesters.forEach(function(sm) { %>
+																						<option value="<%= sm.semester_id %>">
+																							<%= sm.semester_name %>
+																						</option>
+																						<% }) %>
+																					</select>
+																				</div>
+																				<div class="col-lg-6">
+																					<label class="form-control-label" for="input-email">Branch</label>
+																					<select class="form-control" data-toggle="select" title="Simple select" name="branch_id" data-placeholder="Select subject">
+																						<% branches.forEach(function(b) { %>
+																							<option value="<%= b.branch_id %>">
+																								<%= b.branch_name %>
+																							</option>
+																							<% }) %>
+																					</select>
+																				</div>
+																			</div>
+																			<!-- Course , Acad type -->
+																			<div class="row">
+																				<div class="col-lg-6">
+																					<label class="form-control-label" for="input-email">Course</label>
+																					<select class="form-control" data-toggle="select" title="Simple select" name="course_id" data-placeholder="Select author">
+                      	<% courses.forEach(function(c) { %>
+																						<option value="<%= c.course_id %>">
+																							<%= c.course_name %>
+																						</option>
+																						<% }) %>
+																					</select>
+																				</div>
+																				<div class="col-lg-6">
+																					<label class="form-control-label" for="input-email">Academic Type</label>
+																					<select class="form-control" data-toggle="select" title="Simple select" name="material_acad_type" data-placeholder="Select">
+																							<option value = "academic">academic</option>
+																							<option value = "non - academic">non-academic</option>
+																					</select>
+																				</div>
+																			</div>
+
+																			<div class="row">
+
+																				<div class="col-lg-6">
+																					<label class="form-control-label" for="input-email">Cost Type</label>
+																					<select class="form-control" data-toggle="select" title="Simple select" name="material_cost_type" data-placeholder="Select">
+																							<option value = "free">Free</option>
+																							<option value = "paid">Paid</option>
+																					</select>
+																				</div>
+
+																				<div class="col-lg-6">
+																					<label class="form-control-label" for="input-email">Cost</label>
+																					<input type="text" class="form-control" placeholder="Cost" name="material_cost" value="<%= data.material_cost %>">
 																				</div>
 																			</div>
 																		</div>

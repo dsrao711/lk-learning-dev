@@ -6,6 +6,7 @@ var controller = require('./controllers')
 router.get('/' , controller.getMaterialsPage)
 router.get('/plans/:id' , controller.getPlans)
 router.post('/plans/edit/:id' , controller.EditMaterial)
+router.post('/plans/delete/:id' , controller.deleteMaterial)
 
 // APIS
 router.get('/getMaterials' , controller.getMaterials)
