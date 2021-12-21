@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<%- include('../partials/header') %>
+</head>
+
+<body>
+	<!-- Sidebar -->
+	<%- include('../partials/sidebar'); %>
+		<div class="main-content" id="panel">
+			<!-- Navbar -->
+			<%- include('../partials/navbar'); %>
+				<!-- Main content -->
+				<div class="header bg-primary pb-6">
+					<!-- Upper nav , Stats -->
+					<div class="container-fluid">
+						<div class="header-body">
+							<div class="row align-items-center py-4">
+								<!-- Upper Nav -->
+								<div class="col-lg-6 col-7">
+									<h6 class="h2 text-white d-inline-block mb-0">Default</h6>
+									<!-- Upper Nav -->
+									<nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+										<ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+											<li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+											<li class="breadcrumb-item"><a href="#">Materials</a></li>
+											<li class="breadcrumb-item active" aria-current="page">
+												<%= data.material_name %>
+											</li>
+										</ol>
+									</nav>
+								</div>
+								<div class="col-lg-6 text-right">
+									<form method="post" action="/">
+										<button type="submit" class="btn btn-lg btn-neutral text-dark">Export
+											CSV</button>
+									</form>
+								</div>
+								<div class="col-lg-12">
+									<div class="row">
+										<div class="col">
+											<div class="card">
+												<!-- Card header -->
+												<div class="card-header border-0">
+													<h3 class="mb-0">Details</h3>
+												</div>
+
+												<div class="container">
+													<div class="card p-2">
+														<h2><b>
+																<%= data.material_name %>
+															</b></h2>
+														<hr style="padding : 0 ; margin :0">
+														<div class="row mt-2">
+															<div class="col-lg-6">
+																<ul>
+																	<li><b>Author :</b>
+																		<%= data.author_name %>
+																	</li>
+																	<li><b>Description :</b>
+																		<%= data.material_description %>
+																	</li>
+																	<li><b>Type :</b>
+																		<%= data.material_acad_type %>
+																	</li>
+																	<li><b>Package :</b>
+																		<%= data.material_cost_type %>
+																	</li>
+																</ul>
+															</div>
+															<div class="col-lg-6">
+																<ul>
+																	<li><b>Cost : </b>Rs. <%= data.material_cost %>
+																	</li>
+																	<li><b>Course : </b>
+																		<%= data.course_name %>
+																	</li>
+																	<li><b>Branch : </b>
+																		<%= data.branch_name %>
+																	</li>
+																	<li><b>Subject : </b>
+																		<%= data.subject_name %>
+																	</li>
+																</ul>
+															</div>
+														</div>
+														<div class="row m-2">
+															<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#examplemodal">Edit</button>
+															<button type="button" class="btn btn-outline-danger ">Delete</button>
+														</div>
+														<!-- Edit modal -->
+														<div class="modal fade" id="examplemodal" tabindex="-1"
+															role="dialog" aria-labelledby="exampleModalLabel"
+															aria-hidden="true">
+															<div class="modal-dialog modal-dialog-centered"
+																role="document">
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<h5 class="modal-title" id="exampleModalLabel">Edit Student data</h5>
+																		<button type="button" class="close"
+																			data-dismiss="modal" aria-label="Close">
+																			<span aria-hidden="true">&times;</span>
+																		</button>
+																	</div>
+
+																	<form role="form" action="/students/edit"
+																		method="POST">
+
+																		<div class="modal-body">
+
+																			Edit modal
+
+																		</div>
+																		<div class="modal-footer">
+																			<button type="button"
+																				class="btn btn-secondary"
+																				data-dismiss="modal">Close</button>
+																			<button type="submit"
+																				class="btn btn-primary">Submit</button>
+																		</div>
+																	</form>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+		</div>
+
+		<!-- Scripts -->
+		<%- include('../partials/scripts'); %>
+</body>
+
+</html>

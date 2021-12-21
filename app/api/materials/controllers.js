@@ -42,43 +42,43 @@ exports.getMaterialsPage = function (req, res) {
         
 }
 
-exports.getPlans = function (req, res) {
+exports.getPlans = async function (req, res) {
+
     var material_id = req.params.id
-    try {   
-
-        console.log(material_id)
-        var sql_statement = `
-                SELECT 
-                    m.material_name , m.material_acad_type , m.material_cost_type, m.material_id,
-                    m.material_cost , a.author_name , s.semester_name , 
-                    c.course_name , b.branch_name , 
-                    ct.category_id , ct.category.name 
-                FROM material as m
-                    JOIN Category as ct m.material_id = ct.material_id
-                    JOIN author as a ON m.author_id = a.author_id
-                    JOIN semester as s ON m.semester_id = s.semester_id
-                    JOIN course as c ON c.course_id = m.course_id
-                    JOIN branch as b ON m.branch_id = b.branch_id
-                    
-        `
-
-        mysqlConnection.query(sql_statement, (err, rows) => {
-            if (!err) {
-                console.log(rows)
-                console.log("Sending")
-                res.send(rows)
-            } else {
-                console.log(err)
+    var sql_statement =  `
+            SELECT 
+                m.material_id , m.material_name , m.material_cost_type , 
+                m.material_description , m.material_cost , m.material_acad_type,
+                a.author_id , a.author_name , 
+                c.course_id , c.course_name , 
+                b.branch_id , b.branch_name ,
+                s.subject_id , s.subject_name
+            FROM material as m
+                JOIN author as a ON m.author_id = a.author_id
+                JOIN course as c ON m.course_id = c.course_id
+                JOIN branch as b ON m.branch_id = b.branch_id
+                JOIN subject as s ON m.subject_id = s.subject_id 
+            WHERE m.material_id = ?
+    `
+    mySqlConnection.query(sql_statement , [material_id] , (err , rows) => {
+        try{
+            if(!err){
+                console.log(rows[0])
+                res
+                .status(200)
+                .render('materials/plans.ejs' , {data : rows[0]})
+            }else{
                 res
                 .status(400)
                 .json({"message" : err})
             }
-        })
-        res.send(material_id)
+        }catch(err){
+            res
+            .status(500)
+            .json({"error" : err})
+        }
+    })
 
-    }catch(err){
-        res.send(500).json({"message" : "Internal server error" , "Error" : err})
-    }
         
 }
 
