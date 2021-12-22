@@ -1,14 +1,25 @@
 var express = require('express')
 var router = express.Router()
 var controller = require('./controllers')
+var categoriesController = require('./categoriesControllers')
 
 // Admin panel
+
 router.get('/' , controller.getMaterialsPage)
-router.get('/plans/:id' , controller.getPlans)
+router.get('/plans/:id' , controller.getPlans) 
+// plans
 router.post('/plans/edit/:id' , controller.EditMaterial)
 router.post('/plans/delete/:id' , controller.deleteMaterial)
+// categories 
+router.post('/category/edit/:id' , categoriesController.editCategory)
+// pdf
+
+// videos
+
+
 
 // APIS
+
 router.get('/getMaterials' , controller.getMaterials)
 router.post('/getMaterialsBySem' , controller.getMaterialsBySem)
 router.post('/getCategoryByMaterial' , controller.getCategoryByMaterial)

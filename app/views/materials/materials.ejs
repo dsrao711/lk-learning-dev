@@ -24,8 +24,8 @@
                   <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                     <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                       <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                      <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
-                      <li class="breadcrumb-item active" aria-current="page">Users</li>
+                      <li class="breadcrumb-item"><a href="#">Materials</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Materials</li>
                     </ol>
                   </nav>
                 </div>
@@ -57,7 +57,6 @@
                                   <th scope="col">Branch</th>
                                   <th scope="col">Course</th>
                                   <th scope="col">Manage</th>
-                                  <th scope="col">Delete</th>
                                 </tr>
                               </thead>
                               <tbody class="list">
@@ -92,10 +91,7 @@
                                     <td class="manage">
                                       <a class="btn  btn-sm" href = "/materials/plans/<%= data.material_id %>"><i class="fa fa-tasks" style="color : #172b4d"></i></a>
                                     </td>
-                                    <td class="delete">
-                                      <a class="btn btn-sm" href = "/students/delete/<%= data.student_id %>"><i class="fa fa-trash"
-                                          style="color : #172b4d"></i></a>
-                                    </td>
+                                    
                                   </tr>
                                   
                                   <% }) %>

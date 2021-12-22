@@ -7,6 +7,7 @@ var getBranches = require('../utils/getBranches')
 var getSemesters = require('../utils/getSem')
 var getAuthors= require('../utils/getAuthors')
 var getSubjects = require('../utils/getSubjects')
+var getCategories = require('../utils/getCategories')
 
 
 // Admin panel 
@@ -59,6 +60,7 @@ exports.getPlans = async function (req, res) {
     const subjects = await getSubjects()
 
     var material_id = req.params.id
+    const categories = await getCategories(material_id)
     var sql_statement =  `
             SELECT 
                 m.material_id , m.material_name , m.material_cost_type , 
@@ -87,7 +89,8 @@ exports.getPlans = async function (req, res) {
                     branches : branches, 
                     semesters : sem , 
                     authors : authors ,
-                    subjects : subjects 
+                    subjects : subjects ,
+                    categories : categories
                 })
             }else{
                 res
@@ -189,15 +192,6 @@ exports.deleteMaterial = async function(req, res){
     }
 
 }
-
-
-
-
-
-
-
-
-
 
 
 
