@@ -17,6 +17,7 @@
 					<div class="container-fluid">
 						<div class="header-body">
 							<div class="row align-items-center py-4">
+
 								<!-- Upper Nav -->
 								<div class="col-lg-6 col-7">
 									<h6 class="h2 text-white d-inline-block mb-0">Default</h6>
@@ -31,12 +32,16 @@
 										</ol>
 									</nav>
 								</div>
+
+								<!-- Export csv -->
 								<div class="col-lg-6 text-right">
 									<form method="post" action="/">
 										<button type="submit" class="btn btn-lg btn-neutral text-dark">Export
 											CSV</button>
 									</form>
 								</div>
+
+<!-- **************************** Details *************************************************** -->
 								<div class="col-lg-12">
 									<div class="row">
 										<div class="col">
@@ -45,7 +50,7 @@
 												<div class="card-header border-0">
 													<h3 class="mb-0">Details</h3>
 												</div>
-												<!-- Materials info -->
+<!--************************************* Materials info  **********************************************-->
 												<div class="container">
 													<div class="card p-2">
 														<h2><b>
@@ -86,75 +91,53 @@
 															</div>
 														</div>
 														<div class="row m-2">
-															<button type="button"
-																class="btn btn-outline-success float-right"
-																data-toggle="modal"
+															<button type="button" class="btn btn-outline-success float-right" data-toggle="modal"
 																data-target="#examplemodal">Edit</button>
 															<!-- <button type="button" class="btn btn-outline-danger float-right" data-toggle="modal" data-target="#examplemodal_delete">Delete</button> -->
 														</div>
 														<!-- Edit modal -->
-														<div class="modal fade" id="examplemodal" tabindex="-1"
-															role="dialog" aria-labelledby="exampleModalLabel"
-															aria-hidden="true">
-															<div class="modal-dialog modal-dialog-centered"
-																role="document">
+														<div class="modal fade" id="examplemodal" tabindex="-1" role="dialog"
+															aria-labelledby="exampleModalLabel" aria-hidden="true">
+															<div class="modal-dialog modal-dialog-centered" role="document">
 																<div class="modal-content">
 																	<div class="modal-header">
 																		<h5 class="modal-title" id="exampleModalLabel">
 																			Edit Material data</h5>
-																		<button type="button" class="close"
-																			data-dismiss="modal" aria-label="Close">
+																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 																			<span aria-hidden="true">&times;</span>
 																		</button>
 																	</div>
-																	<form role="form"
-																		action="/materials/plans/edit/<%= data.material_id %>"
+																	<form role="form" action="/materials/plans/edit/<%= data.material_id %>"
 																		method="POST">
 																		<div class="modal-body">
 
 																			<div class="row">
 																				<div class="col-lg-12">
-																					<label class="form-control-label"
-																						for="input-email">Material
+																					<label class="form-control-label" for="input-email">Material
 																						Name</label>
-																					<input type="text"
-																						class="form-control"
-																						placeholder="College Name"
-																						name="material_name"
-																						value="<%= data.material_name %>">
+																					<input type="text" class="form-control" placeholder="College Name"
+																						name="material_name" value="<%= data.material_name %>">
 																				</div>
 																			</div>
 																			<!-- Author , Subject -->
 																			<div class="row">
 																				<div class="col-lg-6">
-																					<label class="form-control-label"
-																						for="input-email">Author</label>
-																					<select class="form-control"
-																						data-toggle="select"
-																						title="Simple select"
-																						name="author_id"
-																						data-placeholder="Select author">
-																						<% authors.forEach(function(a) {
-																							%>
-																							<option
-																								value="<%= a.author_id %>">
+																					<label class="form-control-label" for="input-email">Author</label>
+																					<select class="form-control" data-toggle="select" title="Simple select"
+																						name="author_id" data-placeholder="Select author">
+																						<% authors.forEach(function(a) { %>
+																							<option value="<%= a.author_id %>">
 																								<%= a.author_name %>
 																							</option>
 																							<% }) %>
 																					</select>
 																				</div>
 																				<div class="col-lg-6">
-																					<label class="form-control-label"
-																						for="input-email">Subject</label>
-																					<select class="form-control"
-																						data-toggle="select"
-																						title="Simple select"
-																						name="subject_id"
-																						data-placeholder="Select subject">
-																						<% subjects.forEach(function(s)
-																							{ %>
-																							<option
-																								value="<%= s.subject_id %>">
+																					<label class="form-control-label" for="input-email">Subject</label>
+																					<select class="form-control" data-toggle="select" title="Simple select"
+																						name="subject_id" data-placeholder="Select subject">
+																						<% subjects.forEach(function(s) { %>
+																							<option value="<%= s.subject_id %>">
 																								<%= s.subject_name %>
 																							</option>
 																							<% }) %>
@@ -164,34 +147,22 @@
 																			<!-- Subject , Sem -->
 																			<div class="row">
 																				<div class="col-lg-6">
-																					<label class="form-control-label"
-																						for="input-email">Semester</label>
-																					<select class="form-control"
-																						data-toggle="select"
-																						title="Simple select"
-																						name="semester_id"
-																						data-placeholder="Select author">
-																						<% semesters.forEach(function(sm)
-																							{ %>
-																							<option
-																								value="<%= sm.semester_id %>">
+																					<label class="form-control-label" for="input-email">Semester</label>
+																					<select class="form-control" data-toggle="select" title="Simple select"
+																						name="semester_id" data-placeholder="Select author">
+																						<% semesters.forEach(function(sm) { %>
+																							<option value="<%= sm.semester_id %>">
 																								<%= sm.semester_name %>
 																							</option>
 																							<% }) %>
 																					</select>
 																				</div>
 																				<div class="col-lg-6">
-																					<label class="form-control-label"
-																						for="input-email">Branch</label>
-																					<select class="form-control"
-																						data-toggle="select"
-																						title="Simple select"
-																						name="branch_id"
-																						data-placeholder="Select subject">
-																						<% branches.forEach(function(b)
-																							{ %>
-																							<option
-																								value="<%= b.branch_id %>">
+																					<label class="form-control-label" for="input-email">Branch</label>
+																					<select class="form-control" data-toggle="select" title="Simple select"
+																						name="branch_id" data-placeholder="Select subject">
+																						<% branches.forEach(function(b) { %>
+																							<option value="<%= b.branch_id %>">
 																								<%= b.branch_name %>
 																							</option>
 																							<% }) %>
@@ -201,31 +172,21 @@
 																			<!-- Course , Acad type -->
 																			<div class="row">
 																				<div class="col-lg-6">
-																					<label class="form-control-label"
-																						for="input-email">Course</label>
-																					<select class="form-control"
-																						data-toggle="select"
-																						title="Simple select"
-																						name="course_id"
-																						data-placeholder="Select author">
-																						<% courses.forEach(function(c) {
-																							%>
-																							<option
-																								value="<%= c.course_id %>">
+																					<label class="form-control-label" for="input-email">Course</label>
+																					<select class="form-control" data-toggle="select" title="Simple select"
+																						name="course_id" data-placeholder="Select author">
+																						<% courses.forEach(function(c) { %>
+																							<option value="<%= c.course_id %>">
 																								<%= c.course_name %>
 																							</option>
 																							<% }) %>
 																					</select>
 																				</div>
 																				<div class="col-lg-6">
-																					<label class="form-control-label"
-																						for="input-email">Academic
+																					<label class="form-control-label" for="input-email">Academic
 																						Type</label>
-																					<select class="form-control"
-																						data-toggle="select"
-																						title="Simple select"
-																						name="material_acad_type"
-																						data-placeholder="Select">
+																					<select class="form-control" data-toggle="select" title="Simple select"
+																						name="material_acad_type" data-placeholder="Select">
 																						<option value="academic">
 																							academic</option>
 																						<option value="non - academic">
@@ -237,14 +198,10 @@
 																			<div class="row">
 
 																				<div class="col-lg-6">
-																					<label class="form-control-label"
-																						for="input-email">Cost
+																					<label class="form-control-label" for="input-email">Cost
 																						Type</label>
-																					<select class="form-control"
-																						data-toggle="select"
-																						title="Simple select"
-																						name="material_cost_type"
-																						data-placeholder="Select">
+																					<select class="form-control" data-toggle="select" title="Simple select"
+																						name="material_cost_type" data-placeholder="Select">
 																						<option value="free">Free
 																						</option>
 																						<option value="paid">Paid
@@ -253,22 +210,16 @@
 																				</div>
 
 																				<div class="col-lg-6">
-																					<label class="form-control-label"
-																						for="input-email">Cost</label>
-																					<input type="text"
-																						class="form-control"
-																						placeholder="Cost"
-																						name="material_cost"
-																						value="<%= data.material_cost %>">
+																					<label class="form-control-label" for="input-email">Cost</label>
+																					<input type="text" class="form-control" placeholder="Cost"
+																						name="material_cost" value="<%= data.material_cost %>">
 																				</div>
 																			</div>
 																		</div>
 																		<div class="modal-footer">
-																			<button type="button"
-																				class="btn btn-secondary"
+																			<button type="button" class="btn btn-secondary"
 																				data-dismiss="modal">Close</button>
-																			<button type="submit"
-																				class="btn btn-primary">Submit</button>
+																			<button type="submit" class="btn btn-primary">Submit</button>
 																		</div>
 																	</form>
 																</div>
@@ -276,17 +227,14 @@
 														</div>
 
 														<!-- Delete modal -->
-														<div class="modal fade" id="examplemodal_delete" tabindex="-1"
-															role="dialog" aria-labelledby="exampleModalLabel"
-															aria-hidden="true">
-															<div class="modal-dialog modal-dialog-centered"
-																role="document">
+														<div class="modal fade" id="examplemodal_delete" tabindex="-1" role="dialog"
+															aria-labelledby="exampleModalLabel" aria-hidden="true">
+															<div class="modal-dialog modal-dialog-centered" role="document">
 																<div class="modal-content">
 																	<div class="modal-header">
 																		<h5 class="modal-title" id="exampleModalLabel">
 																			Delete material</h5>
-																		<button type="button" class="close"
-																			data-dismiss="modal" aria-label="Close">
+																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 																			<span aria-hidden="true">&times;</span>
 																		</button>
 																	</div>
@@ -294,8 +242,7 @@
 																		Are you sure you wish to delete ?
 																	</div>
 																	<div class="modal-footer">
-																		<button type="button" class="btn btn-secondary"
-																			data-dismiss="modal">Close</button>
+																		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 																		<a href="/materials/plans/edit/<%= data.material_id %>"
 																			class="btn btn-primary">Submit</a>
 																	</div>
@@ -307,7 +254,7 @@
 													</div>
 												</div>
 
-												<!-- Categories -->
+<!-- **********************************************Categories************************************************* -->
 												<div class="container">
 													<div class="card-header border-0">
 														<h3 class="mb-0">Categories</h3>
@@ -318,22 +265,27 @@
 															<table class="table align-items-center table-flush">
 																<thead class="thead-light">
 																	<tr>
-																		<th scope="col" class="sort" data-sort="name">
-																			Category</th>
+																		<th scope="col" class="sort" data-sort="name">Category</th>
 																		<th scope="col">Edit</th>
 																		<th scope="col">Manage</th>
+																		<th scope="col">Delete</th>
 																	</tr>
 																</thead>
 																<tbody class="list">
-																	<% if (categories.length){ var i=1 ;
-																		categories.forEach(function(c){ %>
-
+																	<% if (categories.length){ var i=1 ; categories.forEach(function(c){ %>
 																		<tr>
 																			<td class="budget">
 																				<%= c.category_name %>
 																			</td>
 																			<td class="edit">
-																				<button type="button class="btn  btn-sm" data-toggle="modal" data-target="#examplemodal-<%= c.category_id %>"><i class="fa fa-edit" 	style=" color : #172b4d"></i></button>
+																				<button type="button class=" btn btn-sm" data-toggle="modal"
+																					data-target="#examplemodal-<%= c.category_id %>">
+																					<i class="fa fa-edit" style=" color : #172b4d"></i></button>
+																			</td>
+																			<td class="delete">
+																				<button type="button class=" btn btn-sm" data-toggle="modal"
+																					data-target="#examplemodal-del-<%= c.category_id %>">
+																					<i class="fa fa-trash" style=" color : #172b4d"></i></button>
 																			</td>
 																			<td class="manage">
 																				<a class="btn btn-sm" href="/materials/categories/<%= c.category_id %>">
@@ -342,8 +294,8 @@
 																		</tr>
 
 																		<!-- Edit modal -->
-																		<div class="modal fade" id="examplemodal-<%= c.category_id %>" tabindex="-1" role="dialog"
-																				aria-labelledby="exampleModalLabel" aria-hidden="true">
+																		<div class="modal fade" id="examplemodal-<%= c.category_id %>" tabindex="-1"
+																			role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
 																			<div class="modal-dialog modal-dialog-centered" role="document">
 																				<div class="modal-content">
@@ -354,17 +306,20 @@
 																						</button>
 																					</div>
 
-																					<form role="form" action="/materials/category/edit/<%= c.category_id %>" method="POST">
+																					<form role="form" action="/materials/category/edit/<%= c.category_id %>"
+																						method="POST">
 																						<div class="modal-body">
 																							<div class="row">
 																								<div class="col-lg-6">
 																									<label class="form-control-label" for="input-email">Category</label>
-																									<input type="text" class="form-control"placeholder="Category Name" name="category_name" value="<%= c.category_name %>">
+																									<input type="text" class="form-control" placeholder="Category Name"
+																										name="category_name" value="<%= c.category_name %>">
 																								</div>
 																							</div>
 																						</div>
 																						<div class="modal-footer">
-																							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+																							<button type="button" class="btn btn-secondary"
+																								data-dismiss="modal">Close</button>
 																							<button type="submit" class="btn btn-primary">Submit</button>
 																						</div>
 																					</form>
@@ -372,20 +327,42 @@
 																				</div>
 																			</div>
 																		</div>
-																		
+
+																		<!-- Delete modal -->
+																		<div class="modal fade" id="examplemodal-del-<%= c.category_id %>" tabindex="-1"
+																			role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+																			<div class="modal-dialog modal-dialog-centered" role="document">
+																				<div class="modal-content">
+																					<div class="modal-header">
+																						<h5 class="modal-title" id="exampleModalLabel">Del category </h5>
+																						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																							<span aria-hidden="true">&times;</span>
+																						</button>
+																					</div>
+																						<div class="modal-body">
+																							Are you sure you wish to delete <%= c.category_name %>
+																						</div>
+																						<div class="modal-footer">
+																							<form role="form" action="/materials/category/del/<%= c.category_id %>" method="POST" >
+																								<input type="hidden" class="form-control" placeholder="Category Name" name="material_id" value="<%= data.material_id %>">
+																								<input type="hidden" class="form-control" placeholder="Category Name" name="category_id" value="<%= c.category_id%>">
+																								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+																								<button type = "submit" class="btn btn-primary">Submit</a>
+																							</form>
+																							
+																						</div>
+																				</div>
+																			</div>
+																		</div>
 																		<% }) %>
 																	<% } %>
 																</tbody>
 															</table>
-															<button type="button"
-																class="btn btn-primary float-right">Add
-																category</button>
+															<button type="button" class="btn btn-primary float-right" data-toggle="modal" 
+															 data-target="#examplemodal-add">Add category</button>
 														</div>
 													</div>
-
-
-
-
 
 												</div>
 											</div>
@@ -399,6 +376,42 @@
 				</div>
 
 
+		</div>
+
+		<!-- *********** Add category modal ************ -->
+		<div class="modal fade" id="examplemodal-add" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Add category</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<form role="form" action="/materials/category/add" 	method="POST">
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-lg-6">
+									<label class="form-control-label" for="input-email">Category</label>
+									<input type="text" class="form-control" placeholder="Category Name"	name="category_name" >
+								</div>
+								<div class="col-lg-6">
+									<input type="hidden" class="form-control" placeholder="Material ID"	name="material_id" value = "<%= data.material_id %>" >
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</form>
+
+				</div>
+			</div>
 		</div>
 
 		<!-- Scripts -->

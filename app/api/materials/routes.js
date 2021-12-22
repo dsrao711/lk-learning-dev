@@ -2,6 +2,7 @@ var express = require('express')
 var router = express.Router()
 var controller = require('./controllers')
 var categoriesController = require('./categoriesControllers')
+var pdfController = require('./pdfControlller')
 
 // Admin panel
 
@@ -12,7 +13,10 @@ router.post('/plans/edit/:id' , controller.EditMaterial)
 router.post('/plans/delete/:id' , controller.deleteMaterial)
 // categories 
 router.post('/category/edit/:id' , categoriesController.editCategory)
+router.post('/category/add' , categoriesController.addCategory)
+router.post('/category/del/:id' , categoriesController.deleteCategory)
 // pdf
+router.get('/pdfs/:id' , pdfController.managePdfs)
 
 // videos
 
