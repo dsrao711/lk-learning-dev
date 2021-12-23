@@ -373,9 +373,20 @@
 																								<input type="hidden" class="form-control" placeholder="Category Name" name="category_id" value="<%= c.category_id%>">
 																								<div class="row">
 																									<div class="col-lg-12">
+																										<label class="form-control-label" for="input-email">Select Topic</label>
+																										<select class="form-control" data-toggle="select" title="Simple select" 	name="topic_id" data-placeholder="Select author">
+																											<% topics.forEach(function(t) { %>
+																											<option value="<%= t.topic_id %>">
+																												<%= t.topic_name %>
+																											</option>
+																											<% }) %>
+																										</select>
+																									</div>
+																									<div class="col-lg-12">
 																										<label class="form-control-label" for="input-email">Upload PDF</label>
 																										<input type="file" class="form-control-file" placeholder="File" name="pdf" >
 																									</div>
+																									<input type="hidden" class="form-control"  name="material_id" value = <%= data.material_id %> >
 																								</div>
 																						</div>
 																						<div class="modal-footer">

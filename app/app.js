@@ -40,7 +40,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/pdf', express.static(__dirname + 'pdfs'));
+app.use('/pdf', express.static(path.join(__dirname, 'pdfs')));
+
 
 // Routes
 app.use('/', dashboardRouter);
