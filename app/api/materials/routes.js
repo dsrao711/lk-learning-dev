@@ -3,6 +3,7 @@ var router = express.Router()
 var controller = require('./controllers')
 var categoriesController = require('./categoriesControllers')
 var pdfController = require('./pdfControlller')
+var topicController = require('./topicsControllers')
 
 const multer  = require('multer')
 const storage = multer.diskStorage({
@@ -19,6 +20,7 @@ const upload = multer({storage : storage})
 // Admin panel
 
 router.get('/' , controller.getMaterialsPage)
+router.post('/add' , controller.addMaterial)
 router.get('/plans/:id' , controller.getPlans) 
 // plans
 router.post('/plans/edit/:id' , controller.EditMaterial)
@@ -27,12 +29,11 @@ router.post('/plans/delete/:id' , controller.deleteMaterial)
 router.post('/category/edit/:id' , categoriesController.editCategory)
 router.post('/category/add' , categoriesController.addCategory)
 router.post('/category/del/:id' , categoriesController.deleteCategory)
+//topic
+router.post('/topics/add' , topicController.addTopic)
 // pdf
 router.post('/pdfs/:id' , upload.single('pdf'),  pdfController.uploadPdfs)
-
 // videos
-
-
 
 // APIS
 

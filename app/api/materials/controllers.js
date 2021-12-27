@@ -13,7 +13,14 @@ var getTopics = require('../utils/getTopics')
 // Admin panel 
 // Get materials page
 
-exports.getMaterialsPage = function (req, res) {
+exports.getMaterialsPage = async function (req, res) {
+
+    const universities = await getUniversities()
+    const courses = await getCourses()
+    const branches = await getBranches()
+    const sem = await getSemesters()
+    const authors = await getAuthors()
+    const subjects = await getSubjects()
 
     try {   
         var sql_statement = `
@@ -26,14 +33,21 @@ exports.getMaterialsPage = function (req, res) {
             JOIN semester as s ON m.semester_id = s.semester_id
             JOIN course as c ON c.course_id = m.course_id
             JOIN branch as b ON m.branch_id = b.branch_id
-    
     `
         mysqlConnection.query(sql_statement, (err, rows) => {
             if (!err) {
                 console.log(rows)
                 console.log("Sending")
                 res.status(200)
-                .render('materials/materials.ejs' , {data : rows})
+                .render('materials/materials.ejs' , {
+                    data : rows, 
+                    universities : universities , 
+                    courses : courses , 
+                    branches : branches, 
+                    semesters : sem , 
+                    authors : authors ,
+                    subjects : subjects ,
+                })
             } else {
                 console.log(err)
                 res
@@ -41,13 +55,67 @@ exports.getMaterialsPage = function (req, res) {
                 .json({"message" : err})
             }
         })
-
     }catch(err){
         res.send(500).json({"message" : "Internal server error" , "Error" : err})
+    }   
+}
+
+exports.addMaterial = async function(req,res){
+
+    var author_id = req.body.author_id 
+    var material_name = req.body.material_name
+    var material_description = req.body.material_description
+    var subject_id = req.body.subject_id 
+    var semester_id = req.body.semester_id 
+    var branch_id = req.body.branch_id 
+    var course_id = req.body.course_id 
+    var material_acad_type = req.body.material_acad_type 
+    var material_cost_type = req.body.material_cost_type 
+    var material_cost = req.body.material_cost 
+
+    var sql_statement =    `
+        INSERT INTO
+            material(
+                material_name , material_description , 
+                author_id , 
+                subject_id , semester_id , 
+                branch_id , course_id , 
+                material_acad_type , material_cost_type , 
+                material_cost
+            )
+            VALUES(?,?,?,?,?,?,?,?,?,?)
+    `
+
+    var users_input = [
+        material_name , 
+        material_description , 
+        author_id ,
+        subject_id , 
+        semester_id , 
+        branch_id , 
+        course_id , 
+        material_acad_type , 
+        material_cost_type , 
+        material_cost
+    ]
+
+    console.log(users_input)
+    try{
+        mysqlConnection.query(sql_statement, users_input, (err, rows) => {
+            if (!err) {
+                res.status(201).redirect('/materials')
+            }
+            else{
+                res.status(400).send("Failed!!")
+            }
+            
+        })
+    }catch(err){
+        res
+        .status(500)
+        .json({ "message": "Internal server error!" })
     }
 
-    
-        
 }
 
 exports.getPlans = async function (req, res) {
@@ -114,6 +182,7 @@ exports.EditMaterial = async function(req , res){
     console.log("heerre.....")
 
      material_name = req.body.material_name , 
+     material_description = req.body.material_description , 
      author_id = req.body.author_id , 
      subject_id = req.body.subject_id , 
      semester_id = req.body.semester_id , 
@@ -135,7 +204,9 @@ exports.EditMaterial = async function(req , res){
                 course_id = ? , 
                 material_acad_type = ? , 
                 material_cost_type = ? ,
-                material_cost = ?
+                material_cost = ?,
+                material_description = ?
+
         WHERE material_id = ?
     `
 
@@ -149,6 +220,7 @@ exports.EditMaterial = async function(req , res){
         material_acad_type ,
         material_cost_type , 
         material_cost , 
+        material_description ,
         material_id
     ]
 
@@ -226,7 +298,7 @@ exports.getMaterialsBySem = function (req, res) {
     try{
         mySqlConnection.query(sql_statement , [semester_id] , (err, rows, fields) => {
             if (!err) {
-                res.status(200).send(rows)
+                res.status(200).send({rows})
             } else {
                 res.status(400).send(err)
             }
@@ -282,7 +354,7 @@ exports.getTopics = function (req, res) {
     try{
         mySqlConnection.query(sql_statement ,[material_id , category_id], (err, rows) => {
             if (!err) {
-                res.status(200).send(rows)
+                res.status(200).send({rows})
             } else {
                 res.status(400).send(err)
             }
@@ -306,7 +378,7 @@ exports.getPdfs = function (req, res) {
     try{
         mySqlConnection.query(sql_statement ,[topic_id], (err, rows) => {
             if (!err) {
-                res.status(200).send(rows)
+                res.status(200).send({rows})
             } else {
                 res.status(400).send(err)
             }
@@ -330,7 +402,7 @@ exports.getVideos = function (req, res) {
     try{
         mySqlConnection.query(sql_statement ,[topic_id], (err, rows) => {
             if (!err) {
-                res.status(200).send(rows)
+                res.status(200).send({rows})
             } else {
                 res.status(400).send(err)
             }

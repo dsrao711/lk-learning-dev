@@ -25,7 +25,7 @@
 									<nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
 										<ol class="breadcrumb breadcrumb-links breadcrumb-dark">
 											<li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-											<li class="breadcrumb-item"><a href="#">Materials</a></li>
+											<li class="breadcrumb-item"><a href="/materials">Materials</a></li>
 											<li class="breadcrumb-item active" aria-current="page">
 												<%= data.material_name %>
 											</li>
@@ -110,7 +110,7 @@
 																	<form role="form" action="/materials/plans/edit/<%= data.material_id %>"
 																		method="POST">
 																		<div class="modal-body">
-
+																			<!-- Name -->
 																			<div class="row">
 																				<div class="col-lg-12">
 																					<label class="form-control-label" for="input-email">Material
@@ -142,6 +142,13 @@
 																							</option>
 																							<% }) %>
 																					</select>
+																				</div>
+																			</div>
+																			<!-- Desc -->
+																			<div class="row">
+																				<div class="col-lg-12">
+																					<label class="form-control-label" for="input-email">Description</label>
+																					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name = "material_description"></textarea>
 																				</div>
 																			</div>
 																			<!-- Subject , Sem -->
@@ -215,6 +222,7 @@
 																						name="material_cost" value="<%= data.material_cost %>">
 																				</div>
 																			</div>
+
 																		</div>
 																		<div class="modal-footer">
 																			<button type="button" class="btn btn-secondary"
@@ -269,6 +277,7 @@
 																		<th scope="col">Edit</th>
 																		<th scope="col">Delete</th>
 																		<th scope="col">Upload</th>
+																		<th scope="col">Topic</th>
 																	</tr>
 																</thead>
 																<tbody class="list">
@@ -290,6 +299,10 @@
 																			<td class="manage">
 																				<button class="btn btn-sm" data-toggle="modal" data-target="#examplemodal-up-<%= c.category_id %>">
 																				<i class="fa fa-upload" style="color : #172b4d"></i></button>
+																			</td>
+																			<td class="manage">
+																				<button class="btn btn-sm" data-toggle="modal" data-target="#examplemodal-add-<%= c.category_id %>">
+																				<i class="fa fa-plus" style="color : #172b4d"></i></button>
 																			</td>
 																		</tr>
 
@@ -388,6 +401,36 @@
 																									</div>
 																									<input type="hidden" class="form-control"  name="material_id" value = <%= data.material_id %> >
 																								</div>
+																						</div>
+																						<div class="modal-footer">
+																								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+																								<button type = "submit" class="btn btn-primary">Submit</a>
+																						</div>
+																					</form>
+																				</div>
+																			</div>
+																		</div>
+
+																		<!--Add Topic  -->
+																		<div class="modal fade" id="examplemodal-add-<%= c.category_id %>" tabindex="-1"
+																			role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+																			<div class="modal-dialog modal-dialog-centered" role="document">
+																				<div class="modal-content">
+																					<div class="modal-header">
+																						<h5 class="modal-title" id="exampleModalLabel">Add Topic</h5>
+																						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																							<span aria-hidden="true">&times;</span>
+																						</button>
+																					</div>
+																					<form role="form"  action="/materials/topics/add %>" method="POST" >
+																						<div class="modal-body">
+																								<input type="hidden" class="form-control" placeholder="Category Name" name="material_id" value="<%= data.material_id %>">
+																								<input type="hidden" class="form-control" placeholder="Category Name" name="category_id" value="<%= c.category_id%>">
+																								<div class="row">
+																									<div class="col-lg-12">
+																										<label class="form-control-label" for="input-email">Topic</label>
+																										<input type="text" class="form-control" placeholder="topic"  name="topic_name" required>
+																									</div>
 																						</div>
 																						<div class="modal-footer">
 																								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
