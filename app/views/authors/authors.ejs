@@ -30,9 +30,8 @@
                   </nav>
                 </div>
                 <div class="col-lg-6 text-right">
-                  <form method="post" action="/">
-                    <button type="submit" class="btn btn-lg btn-neutral text-dark">Add Author</button>
-                  </form>
+                    <button type="submit" class="btn btn-lg btn-neutral text-dark" data-toggle="modal"
+                    data-target="#examplemodal-add">Add Author</button>
                 </div>
                 <div class="col-lg-12">
                   <div class="row">
@@ -116,8 +115,7 @@
                                           <div class="modal-body">
   
                                             <div class="row">
-                                              <input hidden type="text" class="form-control" placeholder="name"
-                                                name="author_id" value="<%= data.author_id %>">
+                                              
                                               <div class="col-lg-6">
                                                 <label class="form-control-label" for="input-email">Name</label>
                                                 
@@ -240,7 +238,6 @@
                                     </div>
                                   </div>
                                 </div>
-                               
                                 <% }) %>
 
 
@@ -288,9 +285,111 @@
 
     </div>
     <!-- Modals -->
+    <!-- Add Modal -->
+    <div class="modal fade" id="examplemodal-add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <!-- Header -->
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Author data</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!-- Form -->
+          <form role="form" action="/authors/add" method="POST">
+            <div class="modal-body">
+              <!-- Name , email -->
+              <div class="row">
+                <input hidden type="text" class="form-control" placeholder="name"
+                  name="author_id" value="<%= data.author_id %>">
+                <div class="col-lg-6">
+                  <label class="form-control-label" for="input-email">Name</label>
+                  <input type="text" class="form-control" placeholder="name"
+                    name="author_name" required>
+                </div>
+                <div class="col-lg-6">
+                  <label class="form-control-label" for="input-email">Email</label>
+                  <input type="text" class="form-control" placeholder="Email"
+                    name="author_email" required>
+                </div>
+              </div>
+              <!-- Phone number , college -->
+              <div class="row">
+                <div class="col-lg-6">
+                  <label class="form-control-label" for="input-email">Phone number</label>
+                  <input type="text" class="form-control" placeholder="Phone"
+                    name="author_mobile" required>
+                </div>
+                <div class="col-lg-6">
+                  <label class="form-control-label" for="input-email">College</label>
+                  <select class="form-control" data-toggle="select" title="Simple select"
+                    name="college_id" data-placeholder="Select a college" required>
+                    <% colleges.forEach(function(c) { %>
+                      <option value="<%= c.college_id %>">
+                        <%= c.college_name %>
+                      </option>
+                      <% }) %>
+                  </select>
+                </div>
+              </div>
+              <!-- Designation , state -->
+              <div class="row">
+                <div class="col-lg-6">
+                  <label class="form-control-label" for="input-email">Designation</label>
+                  <input type="text" class="form-control" placeholder="Designation"
+                    name="author_designation" required>
+                </div>
+                <div class="col-lg-6">
+                  <label class="form-control-label" for="input-email">State</label>
+                  <select class="form-control" data-toggle="select" title="Simple select"
+                    name="state_id" data-placeholder="Select a state" required>
+                    <% states.forEach(function(s) { %>
+                      <option value="<%= s.state_id %>">
+                        <%= s.state_title %>
+                      </option>
+                      <% }) %>
+                  </select>
+                </div>
 
+              </div>
+              <!-- District , Taluka -->
+              <div class="row">
+                <div class="col-lg-6">
+                  <label class="form-control-label" for="input-email">District</label>
+                  <select class="form-control" data-toggle="select" title="Simple select"
+                    name="district_id" data-placeholder="Select district" required>
+                    <% districts.forEach(function(d) { %>
+                      <option value="<%= d.districtid %>">
+                        <%= d.district_title %>
+                      </option>
+                      <% }) %>
+                  </select>
+                </div>
+                <div class="col-lg-6">
+                  <label class="form-control-label" for="input-email">Taluka</label>
+                  <select class="form-control" data-toggle="select" title="Simple select"
+                    name="taluka_id" data-placeholder="Select a taluka">
+                    <% cities.forEach(function(c) { %>
+                      <option value="<%= c.id %>">
+                        <%= c.name %>
+                      </option>
+                      <% }) %>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary"
+                data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
     <!-- Scripts -->
-    <%- include('../partials/scripts'); %>
+  <%- include('../partials/scripts'); %>
 </body>
 
 </html>

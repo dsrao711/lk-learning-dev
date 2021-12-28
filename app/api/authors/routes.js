@@ -5,6 +5,7 @@ const router = require('express').Router();
 router.get('/getAuthors', requireLogin, controller.getAuthors)
 // Admin panel
 router.get('/' , controller.authorsPage)
+router.post('/add' , controller.addAuthor)
 router.post('/edit' , controller.editAuthors)
 router.get('/delete/:id' , controller.deleteAuthor)
 

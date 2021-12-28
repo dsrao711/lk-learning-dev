@@ -50,6 +50,58 @@ exports.authorsPage = async function(req, res) {
 
 }
 
+exports.addAuthor = async function(req, res) {
+  
+    author_name = req.body.author_name
+    author_email = req.body.author_email
+    author_mobile = req.body.author_mobile
+    college_id = req.body.college_id
+    author_designation = req.body.author_designation
+    state_id = req.body.state_id
+    district_id = req.body.district_id
+    taluka_id = req.body.taluka_id
+    
+    var sql_statement = `
+        INSERT INTO 
+            author(
+                author_name , 
+                author_email , 
+                author_mobile ,
+                college_id , 
+                author_designation ,
+                state_id , 
+                districtid , 
+                city_id 
+            )
+        VALUES(?,?,?,?,?,?,?,?)
+    `
+    var input = [
+        author_name,
+        author_email,
+        author_mobile,
+        college_id,
+        author_designation,
+        state_id,
+        district_id,
+        taluka_id
+    ]
+    
+    try{
+        mysqlConnection.query(sql_statement , input ,(err  ,rows) => {
+            if(!err){
+                console.log(rows)
+                res.status(200).redirect('/authors')
+            }else{
+                res.json({"error" : err})
+            }
+        })
+    }catch(e){
+        res.status(500).json({"Message" : "Internal server error" , "error" : e})
+    }
+
+}
+
+
 exports.editAuthors = async function(req, res){
 
     var sql_statement = `
