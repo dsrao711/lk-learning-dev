@@ -22,8 +22,8 @@
                             <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                                     <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                                    <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Default</li>
+                                    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="/">Default</a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -32,7 +32,7 @@
                             <div class="row"> 
                                 <!-- Section 1 -->
                                 <!-- Users -->
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-4 col-md-6">
                                     <div class="card card-stats">
                                         <!-- Card body -->
                                         <div class="card-body">
@@ -52,14 +52,14 @@
                                     </div>
                                 </div>
                                 <!-- Lectures -->
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-4 col-md-6">
                                     <div class="card card-stats">
                                         <!-- Card body -->
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
                                                     <h5 class="card-title text-uppercase text-muted mb-0">Lecturer</h5>
-                                                    <span class="h2 font-weight-bold mb-0">2,356</span>
+                                                    <span class="h2 font-weight-bold mb-0"><%=  lecturer_count %></span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
@@ -73,14 +73,14 @@
                                     </div>
                                 </div>
                                 <!-- Materials -->
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-4 col-md-6">
                                     <div class="card card-stats">
                                         <!-- Card body -->
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
                                                     <h5 class="card-title text-uppercase text-muted mb-0">Materials</h5>
-                                                    <span class="h2 font-weight-bold mb-0">2,356</span>
+                                                    <span class="h2 font-weight-bold mb-0"><%=  material_count %></span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
@@ -91,8 +91,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                
+        
+                                <!-- Section 2 -->
+                                <!-- categories -->
                                 <!-- Amount recieved -->
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-4 col-md-6">
                                     <div class="card card-stats">
                                         <!-- Card body -->
                                         <div class="card-body">
@@ -110,9 +114,6 @@
                                         </div>
                                     </div>
                                 </div>
-        
-                                <!-- Section 2 -->
-                                <!-- categories -->
                                 <div class="col-xl-4 col-md-6">
                                     <div class="card card-stats">
                                         <!-- Card body -->
@@ -120,7 +121,7 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <h5 class="card-title text-uppercase text-muted mb-0">Categories</h5>
-                                                    <span class="h2 font-weight-bold mb-0">21</span>
+                                                    <span class="h2 font-weight-bold mb-0"><%=  categories_count %></span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -139,7 +140,7 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <h5 class="card-title text-uppercase text-muted mb-0">Orders</h5>
-                                                    <span class="h2 font-weight-bold mb-0">200</span>
+                                                    <span class="h2 font-weight-bold mb-0"><%= orders_count %></span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-gradient-blue text-white rounded-circle shadow">
@@ -151,26 +152,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Feedback -->
-                                <div class="col-xl-4 col-md-6">
-                                    <div class="card card-stats">
-                                        <!-- Card body -->
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                                                    <span class="h2 font-weight-bold mb-0">2,356</span>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
-                                                        <i class="ni ni-satisfied"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-        
+                                
                             </div>  
                         </div>
 

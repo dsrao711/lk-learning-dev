@@ -218,30 +218,5 @@ exports.feedback = async function(req,res){
 }
 
 // My Subscriptions
-exports.feedback = async function(req,res){
-    student_id = req.body.student_id 
-    console.log(req.body)
 
-    var sql_statement = `
-        SELECT 
-            s.order , 
-            o.o
-    `
-    var input = [student_feedback , student_id]
-
-    try {
-        mysqlConnection.query(sql_statement , input ,(err, rows) => {
-            if (err) {
-                res.send(err)
-            }
-            res
-            .status(201)
-            .json({"message" : "Feedback posted successfully!"})
-        })
-    }catch (err) {
-        res 
-        .status(500)
-        .json({ "message": "Internal server error!" })
-    }
-}
 
