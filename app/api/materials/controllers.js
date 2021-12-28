@@ -269,7 +269,6 @@ exports.deleteMaterial = async function(req, res){
 }
 
 
-
 // APIS
 // Get all materials
 exports.getMaterials = function (req, res) {
@@ -290,7 +289,7 @@ exports.getMaterials = function (req, res) {
 
 //Get materials by Sem , Subject , Price range
 // Eg : DSA - Paid , 500
-exports.getMaterialsBySem = function (req, res) {
+exports.getMaterialsFiltered = function (req, res) {
 
     var semester_id = req.body.semester_id
     var subject_id = req.body.subject_id

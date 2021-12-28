@@ -60,7 +60,6 @@ exports.getStudents = async function (req, res) {
     })
 
 }
-
 // Get all students
 exports.getAllStudents = function (req, res) {
 
@@ -95,7 +94,6 @@ exports.getAllStudents = function (req, res) {
     })
 
 }
-
 // Update student 
 exports.editStudent = async function (req, res) {
     console.log(req.body)
@@ -162,7 +160,7 @@ exports.editStudent = async function (req, res) {
             .json({ "message": "Internal server error!" })
     }
 }
-
+// Delete student
 exports.deleteStudent = async function(req, res){
     id = req.params.id
     console.log(id)
@@ -186,5 +184,64 @@ exports.deleteStudent = async function(req, res){
             .json({ "message": "Internal server error!" })
     }
 
+}
+
+
+// APIS 
+// Feedback
+exports.feedback = async function(req,res){
+    student_id = req.body.student_id 
+    student_feedback = req.body.feedback 
+    console.log(req.body)
+
+    var sql_statement = `
+        UPDATE student 
+        SET feedback = ?
+        WHERE student_id = ?
+    `
+    var input = [student_feedback , student_id]
+
+    try {
+        mysqlConnection.query(sql_statement , input ,(err, rows) => {
+            if (err) {
+                res.send(err)
+            }
+            res
+            .status(201)
+            .json({"message" : "Feedback posted successfully!"})
+        })
+    }catch (err) {
+        res 
+        .status(500)
+        .json({ "message": "Internal server error!" })
+    }
+}
+
+// My Subscriptions
+exports.feedback = async function(req,res){
+    student_id = req.body.student_id 
+    console.log(req.body)
+
+    var sql_statement = `
+        SELECT 
+            s.order , 
+            o.o
+    `
+    var input = [student_feedback , student_id]
+
+    try {
+        mysqlConnection.query(sql_statement , input ,(err, rows) => {
+            if (err) {
+                res.send(err)
+            }
+            res
+            .status(201)
+            .json({"message" : "Feedback posted successfully!"})
+        })
+    }catch (err) {
+        res 
+        .status(500)
+        .json({ "message": "Internal server error!" })
+    }
 }
 
