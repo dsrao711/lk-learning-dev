@@ -32,7 +32,6 @@ exports.authorsPage = async function(req, res) {
     try{
         mysqlConnection.query(sql_statement , (err  ,rows) => {
             if(!err){
-                console.log(rows)
                 res.status(200).render('authors/authors.ejs' , {
                     data : rows ,
                     states : states , 
@@ -89,7 +88,7 @@ exports.addAuthor = async function(req, res) {
     try{
         mysqlConnection.query(sql_statement , input ,(err  ,rows) => {
             if(!err){
-                console.log(rows)
+               
                 res.status(200).redirect('/authors')
             }else{
                 res.json({"error" : err})
@@ -104,16 +103,19 @@ exports.addAuthor = async function(req, res) {
 
 exports.editAuthors = async function(req, res){
 
+    console.log("request body ...")
+    console.log(req.body)
+
     var sql_statement = `
         UPDATE author 
-        SET author_name = ? , 
-            author_mobile = ? ,
-            author_email = ? ,
-            state_id = ? , 
-            districtid = ? ,
-            city_id = ? ,
-            college_id = ? , 
-            author_designation = ?
+            SET author_name = ? , 
+                author_mobile = ? ,
+                author_email = ? ,
+                state_id = ? , 
+                districtid = ? ,
+                city_id = ? ,
+                college_id = ? , 
+                author_designation = ?
         WHERE author_id = ? 
     `
 
@@ -128,11 +130,12 @@ exports.editAuthors = async function(req, res){
         req.body.author_designation , 
         req.body.author_id 
     ]
-
+    console.log("input here ...")
+    console.log(input)
     try{
         mysqlConnection.query(sql_statement , input,  (err  ,rows) => {
             if(!err){
-                console.log(rows)
+                console.log("Edited!!")
                 res.status(200).redirect('/authors')
             }else{
                 res.json({"error" : err})

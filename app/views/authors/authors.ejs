@@ -111,7 +111,8 @@
                                         </div>
   
                                         <form role="form" action="/authors/edit" method="POST">
-  
+                                          <input hidden type="text" class="form-control" placeholder="ID"
+                                                  name="author_id" value="<%= data.author_id %>">
                                           <div class="modal-body">
   
                                             <div class="row">
