@@ -91,6 +91,30 @@ exports.editAuthors = async function(req, res){
     }
 }
 
+exports.deleteAuthor = async function(req, res){
+    id = req.params.id
+    console.log(id)
+    var sql_statement = `
+        DELETE from author
+        WHERE author_id = ?
+    `
+    try {
+        mysqlConnection.query(sql_statement, [id], (err, rows) => {
+            if (err) {
+                res.send(err)
+            }
+            console.log("DELETED")
+            res
+            .status(200)
+            .redirect('/authors')
+        })
+    } catch (err) {
+        res
+            .status(500)
+            .json({ "message": "Internal server error!" })
+    }
+
+}
 // APIS
 // get authors api 
 exports.getAuthors = function(req , res) {

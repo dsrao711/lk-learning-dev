@@ -288,15 +288,23 @@ exports.getMaterials = function (req, res) {
     
 }
 
-//Get materials by Sem
+//Get materials by Sem , Subject , Price range
 // Eg : DSA - Paid , 500
 exports.getMaterialsBySem = function (req, res) {
 
-    var semester_id = req.body.material_sem_id
-    const sql_statement = 'SELECT * from material where semester_id = ?'
+    var semester_id = req.body.semester_id
+    var subject_id = req.body.subject_id
+    var material_cost = req.body.material_cost
+    console.log(req.body)
+
+    const sql_statement = `
+        SELECT * from material
+        WHERE semester_id = ? AND subject_id = ? AND material_cost <= ?`
+
+    var input = [semester_id , subject_id , material_cost]
 
     try{
-        mySqlConnection.query(sql_statement , [semester_id] , (err, rows, fields) => {
+        mySqlConnection.query(sql_statement ,input, (err, rows) => {
             if (!err) {
                 res.status(200).send({rows})
             } else {
@@ -304,7 +312,7 @@ exports.getMaterialsBySem = function (req, res) {
             }
         })
     }catch(err){
-        res.status(500).json({"message" : "Internal server error"})
+        res.status(500).json({"message" : "Internal server error" , "err" : err})
     }
     
 }

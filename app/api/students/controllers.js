@@ -170,21 +170,21 @@ exports.deleteStudent = async function(req, res){
         DELETE from student
         WHERE student_id = ?
     `
-    // try {
-    //     mysqlConnection.query(sql_statement, [id], (err, rows) => {
-    //         if (err) {
-    //             res.send(err)
-    //         }
-    //         console.log("DELETED")
-    //         res
-    //         .status(200)
-    //         .redirect('/students')
-    //     })
-    // } catch (err) {
-    //     res
-    //         .status(500)
-    //         .json({ "message": "Internal server error!" })
-    // }
+    try {
+        mysqlConnection.query(sql_statement, [id], (err, rows) => {
+            if (err) {
+                res.send(err)
+            }
+            console.log("DELETED")
+            res
+            .status(200)
+            .redirect('/students')
+        })
+    } catch (err) {
+        res
+            .status(500)
+            .json({ "message": "Internal server error!" })
+    }
 
 }
 
