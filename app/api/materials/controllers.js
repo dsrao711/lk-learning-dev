@@ -294,13 +294,15 @@ exports.getMaterialsFiltered = function (req, res) {
     var semester_id = req.body.semester_id
     var subject_id = req.body.subject_id
     var material_cost = req.body.material_cost
+    var author_id = req.body.author_id
+
     console.log(req.body)
 
     const sql_statement = `
         SELECT * from material
-        WHERE semester_id = ? AND subject_id = ? AND material_cost <= ?`
+        WHERE semester_id = ? AND subject_id = ? AND author_id = ? AND material_cost <= ?`
 
-    var input = [semester_id , subject_id , material_cost]
+    var input = [semester_id , subject_id , author_id , material_cost]
 
     try{
         mySqlConnection.query(sql_statement ,input, (err, rows) => {
