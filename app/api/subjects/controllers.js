@@ -24,10 +24,11 @@ exports.getSubjectsByAuthors = function(req,res){
     var subject_id = req.body.subject_id
     var sql_statement =  `
         SELECT 
-            m.author_id , a.author_name
+            DISTINCT (m.author_id) , a.author_name , s.subject_name
         FROM material as m
         JOIN author as a ON m.author_id = a.author_id
-        WHERE subject_id = ?
+        JOIN subject as s ON s.subject_id = m.subject_id
+        WHERE s.subject_id = ?
     `
 
     try{
