@@ -35,7 +35,7 @@ exports.registerStudent = function (req, res) {
                     res.status(409).json({ "message" : "User already exists"})
                 } else {
                     // Insert
-                    mysqlConnection.query("INSERT INTO student(student_id , student_name , student_password , student_mobile_number , student_email , state_id , district_id , city_id , college_id , university_id , branch_id , course_id , semester_id , student_edu_status , student_academic_yr) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [0, student_name, hash, student_mobile_number, student_email, student_state, student_district, student_taluka, college_id, university_id, branch_id, course_id, semester_id, student_edu_status, student_academic_yr], (err, rows, fields) => {
+                    mysqlConnection.query("INSERT INTO student(student_id , student_name , student_password , student_mobile_number , student_email , state_id , district_id , city_id , college_id , university_id , branch_id , course_id , semester_id , student_edu_status , student_academic_yr , feedback) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [0, student_name, hash, student_mobile_number, student_email, student_state, student_district, student_taluka, college_id, university_id, branch_id, course_id, semester_id, student_edu_status, student_academic_yr, ""], (err, rows, fields) => {
                         if (!err) {
                             res.status(200).send(rows);
                         } else {
