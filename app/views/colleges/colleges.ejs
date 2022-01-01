@@ -49,6 +49,9 @@
                               <tr>
                                 <th scope="col" class="sort" data-sort="name">Name</th>
                                 <th scope="col" class="sort" data-sort="budget">University</th>
+                                <th scope="col" class="sort" data-sort="budget">Course</th>
+                                <th scope="col" class="sort" data-sort="budget">Branches</th>
+                                <th scope="col">Add</th>
                                 <th scope="col">Edit</th>
                                 <th scope="col">Delete</th>
                               </tr>
@@ -61,6 +64,21 @@
                                     </td>
                                     <td class="budget">
                                       <%= data.university_name %>
+                                    </td>
+                                    <td class="budget">
+                                      <%= data.course_name %>
+                                    </td>
+                                    <td class="budget">
+                                      <ol>
+                                        <li>EXTC</li>
+                                        <li>EXTC</li>
+                                        <li>EXTC</li>
+                                      </ol> 
+                                    </td>
+                                    <td class="add_branch">
+                                      <button type="button" class="btn  btn-sm" data-toggle="modal"
+                                        data-target="#examplemodal-addbranch-<%= data.college_id %>"><i class="fa fa-plus"
+                                          style="color : #172b4d"></i></button>
                                     </td>
                                     <td class="edit">
                                       <button type="button" class="btn  btn-sm" data-toggle="modal"

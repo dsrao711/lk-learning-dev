@@ -21,9 +21,11 @@ exports.getCollegesPage = async function(req , res){
     var sql_statement = `
         SELECT 
             c.college_id , c.college_name , 
-            u.university_name 
+            u.university_name ,
+            cr.course_name 
         FROM college as c
         JOIN university as u ON c.university_id = u.university_id
+        JOIN course as cr ON cr.course_id = c.course_id
     `
     try{
         mysqlConnection.query(sql_statement , (err , rows , fields) => {
