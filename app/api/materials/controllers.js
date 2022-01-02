@@ -291,17 +291,23 @@ exports.getMaterials = function (req, res) {
 // Eg : DSA - Paid , 500
 exports.getMaterialsFiltered = function (req, res) {
 
-    var semester_id = req.body.semester_id
     var subject_id = req.body.subject_id
-    var author_id = req.body.author_id
-
     console.log(req.body)
 
     const sql_statement = `
-        SELECT * from material
-        WHERE semester_id = ? AND subject_id = ? AND author_id = ?`
+        SELECT 
+            m.material_id ,
+            m.material_name , 
+            m.material_cost_type , 
+            m.material_cost , 
+            a.author_name , 
+            s.subject_name
+        FROM material as m
+        JOIN subject as s ON s.subject_id = m.subject_id
+        JOIN author as a ON a.author_id = m.author_id
+        WHERE m.subject_id = ? `
 
-    var input = [semester_id , subject_id , author_id]
+    var input = [subject_id ]
 
     try{
         mySqlConnection.query(sql_statement ,input, (err, rows) => {

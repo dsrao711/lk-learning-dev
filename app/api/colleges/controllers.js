@@ -1,6 +1,7 @@
 
 const mysqlConnection = require('../../config/connection')
 const getUniversities = require('../utils/getUniversity')
+const getCollegeBranches = require('../utils/getCollegeBranches')
 
 // API
 exports.getColleges = function(req , res) {
@@ -15,9 +16,15 @@ exports.getColleges = function(req , res) {
 
 }
 
+
+
 // ADMIN panel
 exports.getCollegesPage = async function(req , res){
     const universities = await getUniversities()
+    const college_branches = await getCollegeBranches()
+
+    console.log(college_branches)
+
     var sql_statement = `
         SELECT 
             c.college_id , c.college_name , 
@@ -31,7 +38,6 @@ exports.getCollegesPage = async function(req , res){
         mysqlConnection.query(sql_statement , (err , rows , fields) => {
             if(!err){
                 console.log("Getting colleges...")
-                console.log(rows)
                 res
                 .status(200)
                 .render('colleges/colleges.ejs' , {
